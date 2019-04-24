@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="后端博客,java,电脑">
+  <meta name="description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。    2">
+<meta name="keywords" content="jvm,java,jmm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/04/22/hello-world/index.html">
+<meta property="og:title" content="jvm内存模型jmm">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/jvm-jmm/index.html">
 <meta property="og:site_name" content="策马踏清风">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。    2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-22T15:33:28.338Z">
+<meta property="og:updated_time" content="2019-04-24T12:57:25.192Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="jvm内存模型jmm">
+<meta name="twitter:description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。    2">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/22/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/24/jvm-jmm/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>Hello World | 策马踏清风</title>
+  <title>jvm内存模型jmm | 策马踏清风</title>
   
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/jvm-jmm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="colin">
@@ -346,7 +346,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">jvm内存模型jmm
 
               
             
@@ -372,12 +372,34 @@
                 
               
 
-              <time title="创建时间：2019-04-22 23:33:28" itemprop="dateCreated datePublished" datetime="2019-04-22T23:33:28+08:00">2019-04-22</time>
+              <time title="创建时间：2019-04-24 20:56:31 / 修改时间：20:57:25" itemprop="dateCreated datePublished" datetime="2019-04-24T20:56:31+08:00">2019-04-24</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -407,15 +429,109 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <blockquote>
+<p>java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。</p>
+</blockquote>
+<p>本文整理自-<a href="https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">深入理解JVM-内存模型（jmm）和GC</a>的上半部分</p>
+<hr>
+<h1 id="一、电脑内存模型"><a href="#一、电脑内存模型" class="headerlink" title="一、电脑内存模型"></a>一、电脑内存模型</h1><ol>
+<li>背景<blockquote>
+<p>随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。</p>
+</blockquote>
+</li>
+</ol>
+<p>2.带来的问题</p>
+<blockquote>
+<p>每个cpu各自的一套缓存(一级缓存、二级缓存、三级缓存),如何保证多处理器运算到同一个内存区域时的数据一致性？</p>
+</blockquote>
+<ol start="3">
+<li>解决方法<blockquote>
+<p>为了解决这个问题，各个处理器需要遵循缓存一致性协议与主存交互</p>
+</blockquote>
+</li>
+</ol>
+<p>在cpu层面，<strong>内存屏障(Memory Barrier)</strong>提供了支持(硬件层支持)：</p>
+<ol>
+<li><p>内存屏障的类型</p>
+<blockquote>
+<p>硬件层的内存屏障分为:<code>Load Barrier</code>(读屏障)和<code>Store Barrier</code>(写屏障)</p>
+</blockquote>
+</li>
+<li><p>内存屏障作用</p>
+<blockquote>
+<p>1.cpu执行指令可能是；无序的，内存屏障可以组织屏障两侧进行指令重排。<br>2.强制把写缓冲区/高速缓存中的数据失效，从而强制从主存中获取。</p>
+</blockquote>
+</li>
+<li><p>java中的生成jvm内存屏障</p>
+<blockquote>
+<p>使用关键词volatitle修饰变量</p>
+</blockquote>
+</li>
+</ol>
+<p>相当于变量读写加锁<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatitleValue</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String value;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> String <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span>  <span class="keyword">void</span> <span class="title">set</span><span class="params">(String value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li><p>volatile变量特性</p>
+<blockquote>
+<p>1.可见性，该变量的读一定可以看到读之前最后的写<br>2.原子性，对于该变量的读写具有原子性。</p>
+</blockquote>
+<h1 id="java内存区域"><a href="#java内存区域" class="headerlink" title="java内存区域"></a>java内存区域</h1><blockquote>
+<p>jvm主要有 sun的<code>HotSpot/JRockit</code>和IBM的<code>IBMJVM</code>,其中HotSpot为主流，在此探讨HotSpot虚拟机。</p>
+</blockquote>
+</li>
+<li><p>Java内存模型（Java Memory Model ,JMM）</p>
+<blockquote>
+<p>如开题所说，jmm是jvm的一种规范。使语言不能直接访问硬件内存，作为中转以解决各硬件和操作系统的差异问题。</p>
+</blockquote>
+</li>
+<li><p>虚拟机五大数据区域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方法区、堆是线程共享的</span><br><span class="line">栈、本地方法栈、计数器是线程私有的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1 计数器</p>
+<blockquote>
+<p>线程执行java方法时指向字节码，方便cpu线程切换时切换回正确位置</p>
+</blockquote>
+</li>
+</ol>
+<p>注：内存中唯一没有OutOfMemoryError的区域</p>
+<ol start="2">
+<li>2 虚拟机栈<blockquote>
+<p>由栈帧组成，每个方法执行的时候都会创建栈帧存储变量表，操作栈，动态链接，方法出入口等。</p>
+</blockquote>
+</li>
+</ol>
+<p>注：方法调用入栈，调用完出栈。局部变量表大小在方法运行前就完全确定了</p>
+<ol start="2">
+<li>3本地方法栈<blockquote>
+<p>虚拟机栈调用的是java方法(字节码文件),本地方法栈则是调动native方法(c、c++)的实现方法</p>
+</blockquote>
+<hr>
+<strong>以下为线程共有的</strong></li>
+<li>4堆<blockquote>
+<p>一般来说对象实例及数组都是在堆上被分配内存。堆作为最大的内存区域也是GC(内存回收机制)主要管理的区域。根据规范，堆可以存在与物理上不连续的内存空间，可设定固定大小也可扩展。(-Xmx和-Xms)。</p>
+</blockquote>
+</li>
+</ol>
+<p>注：没有内存可分配会报OOM(OutOfMemory)</p>
+<ol start="2">
+<li>5方法区<blockquote>
+<p>存储已被虚拟机加载的类信息、常量、静态变量、静态方法、静态代码块。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>再回顾一下</strong><br>线程私有的:<br>区域名|作用<br>—|—<br>计数器|cpu线程切换后找到正确位置<br>jvm栈|引用java方法<br>native栈|引用本地c/c++方法及功能<br>线程共享的:<br>区域名|作用<br>—|—<br>堆|对象实例、数组<br>方法区|类的静态信息</p>
+<ol start="3">
+<li>对象在内存中的结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.对象头//</span><br><span class="line">2.数据实体//对象信息</span><br><span class="line">3.对齐填充//占位</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>对象头(markword)</strong>说明：</p>
+<blockquote>
+<ol>
+<li>64操作系统下16字节(开启指针压缩12)</li>
+<li>synchronized的锁信息就存储在这里</li>
+<li>根据锁位偏移有四种锁状态<code>无锁态</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code></li>
+</ol>
+</blockquote>
 
       
     </div>
@@ -437,6 +553,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/jmm/" rel="tag"># jmm</a>
+          
+        </div>
+      
 
       
       
@@ -446,15 +572,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/24/vue-Axios/" rel="next" title="vue-Axios">
+                <i class="fa fa-chevron-left"></i> vue-Axios
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/24/markdownlearn/" rel="prev" title="markdown基础语法">
-                markdown基础语法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -655,7 +781,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、电脑内存模型"><span class="nav-number">1.</span> <span class="nav-text">一、电脑内存模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java内存区域"><span class="nav-number">2.</span> <span class="nav-text">java内存区域</span></a></li></ol></div>
             
 
           </div>

@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。    2">
+  <meta name="description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景  随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。   带">
 <meta name="keywords" content="jvm,java,jmm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm内存模型jmm">
 <meta property="og:url" content="http://yoursite.com/2019/04/24/jvm-jmm/index.html">
 <meta property="og:site_name" content="策马踏清风">
-<meta property="og:description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。    2">
+<meta property="og:description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景  随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。   带">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-24T12:57:25.192Z">
+<meta property="og:updated_time" content="2019-04-24T15:11:56.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm内存模型jmm">
-<meta name="twitter:description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。    2">
+<meta name="twitter:description" content="java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景  随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。   带">
 
 
 
@@ -333,7 +333,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="colin">
-      <meta itemprop="description" content="The only thing we have to fear is fear itself">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
     </span>
 
@@ -372,7 +372,7 @@
                 
               
 
-              <time title="创建时间：2019-04-24 20:56:31 / 修改时间：20:57:25" itemprop="dateCreated datePublished" datetime="2019-04-24T20:56:31+08:00">2019-04-24</time>
+              <time title="创建时间：2019-04-24 20:56:31 / 修改时间：23:11:56" itemprop="dateCreated datePublished" datetime="2019-04-24T20:56:31+08:00">2019-04-24</time>
             
 
             
@@ -435,22 +435,23 @@
 <p>本文整理自-<a href="https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">深入理解JVM-内存模型（jmm）和GC</a>的上半部分</p>
 <hr>
 <h1 id="一、电脑内存模型"><a href="#一、电脑内存模型" class="headerlink" title="一、电脑内存模型"></a>一、电脑内存模型</h1><ol>
-<li>背景<blockquote>
+<li><p>背景</p>
+<blockquote>
 <p>随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。</p>
 </blockquote>
 </li>
-</ol>
-<p>2.带来的问题</p>
+<li><p>带来的问题</p>
 <blockquote>
 <p>每个cpu各自的一套缓存(一级缓存、二级缓存、三级缓存),如何保证多处理器运算到同一个内存区域时的数据一致性？</p>
 </blockquote>
-<ol start="3">
-<li>解决方法<blockquote>
+</li>
+<li><p>解决方法</p>
+<blockquote>
 <p>为了解决这个问题，各个处理器需要遵循缓存一致性协议与主存交互</p>
 </blockquote>
 </li>
 </ol>
-<p>在cpu层面，<strong>内存屏障(Memory Barrier)</strong>提供了支持(硬件层支持)：</p>
+<p><strong>在cpu层面，内存屏障(Memory Barrier)提供了支持(硬件层支持)：</strong></p>
 <ol>
 <li><p>内存屏障的类型</p>
 <blockquote>
@@ -519,7 +520,48 @@
 </li>
 </ol>
 <hr>
-<p><strong>再回顾一下</strong><br>线程私有的:<br>区域名|作用<br>—|—<br>计数器|cpu线程切换后找到正确位置<br>jvm栈|引用java方法<br>native栈|引用本地c/c++方法及功能<br>线程共享的:<br>区域名|作用<br>—|—<br>堆|对象实例、数组<br>方法区|类的静态信息</p>
+<p><strong>再回顾一下</strong><br>线程私有的:</p>
+<table>
+<thead>
+<tr>
+<th>区域名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计数器</td>
+<td>cpu线程切换后找到正确位置</td>
+</tr>
+<tr>
+<td>jvm栈</td>
+<td>引用java方法</td>
+</tr>
+<tr>
+<td>native栈</td>
+<td>引用本地c/c++方法及功能</td>
+</tr>
+</tbody>
+</table>
+<p>线程共享的:</p>
+<table>
+<thead>
+<tr>
+<th>区域名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>堆</td>
+<td>对象实例、数组</td>
+</tr>
+<tr>
+<td>方法区</td>
+<td>类的静态信息</td>
+</tr>
+</tbody>
+</table>
 <ol start="3">
 <li>对象在内存中的结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.对象头//</span><br><span class="line">2.数据实体//对象信息</span><br><span class="line">3.对齐填充//占位</span><br></pre></td></tr></table></figure>
 </li>
@@ -582,6 +624,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/04/24/wgz-loveLife/" rel="prev" title="热爱生命">
+                热爱生命 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -641,7 +687,7 @@
               <img class="site-author-image" itemprop="image" src="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif" alt="colin">
             
               <p class="site-author-name" itemprop="name">colin</p>
-              <div class="site-description motion-element" itemprop="description">The only thing we have to fear is fear itself</div>
+              <div class="site-description motion-element" itemprop="description">我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。</div>
           </div>
 
           
@@ -651,7 +697,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -676,7 +722,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -717,7 +765,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

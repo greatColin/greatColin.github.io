@@ -69,9 +69,9 @@
       <category term="java" scheme="http://yoursite.com/categories/java/"/>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
       <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="jmm" scheme="http://yoursite.com/tags/jmm/"/>
     
@@ -101,11 +101,11 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="http" scheme="http://yoursite.com/tags/http/"/>
-    
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
       <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
     
   </entry>
   
@@ -221,9 +221,9 @@
     
       <category term="springBoot" scheme="http://yoursite.com/tags/springBoot/"/>
     
-      <category term="RestTemplate" scheme="http://yoursite.com/tags/RestTemplate/"/>
-    
       <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
+      <category term="RestTemplate" scheme="http://yoursite.com/tags/RestTemplate/"/>
     
   </entry>
   

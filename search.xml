@@ -47,9 +47,9 @@
       
         <tags>
             
-            <tag> java </tag>
-            
             <tag> jvm </tag>
+            
+            <tag> java </tag>
             
             <tag> jmm </tag>
             
@@ -76,11 +76,11 @@
       
         <tags>
             
-            <tag> http </tag>
-            
             <tag> vue </tag>
             
             <tag> ajax </tag>
+            
+            <tag> http </tag>
             
         </tags>
       
@@ -190,9 +190,9 @@
             
             <tag> springBoot </tag>
             
-            <tag> RestTemplate </tag>
-            
             <tag> http </tag>
+            
+            <tag> RestTemplate </tag>
             
         </tags>
       

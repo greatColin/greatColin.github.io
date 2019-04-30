@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-24T15:51:35.776Z</updated>
+  <updated>2019-04-30T18:35:32.928Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,132 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jpa deleteById()未删除</title>
+    <link href="http://yoursite.com/2019/05/01/fixBug-jpa-deleteById/"/>
+    <id>http://yoursite.com/2019/05/01/fixBug-jpa-deleteById/</id>
+    <published>2019-04-30T18:32:15.000Z</published>
+    <updated>2019-04-30T18:35:32.928Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>debug时看到id准确的传入，但是没有删除。开启jpa的sql显示发现未执行delete，也没报错。</p></blockquote><p>最后在deleteById后加上EntityManager的flush()方法，删除成功。</p><blockquote><p>FlushMode提供了4种缓存模式：MANUAL、COMMIT、AUTO和ALWAYS。使用<code>setFlushModel</code>切换</p></blockquote><ul><li><code>MANUAL</code> 必须手动调用<code>flush()</code></li><li><code>COMMIT</code> 事物提交才会</li><li><code>AUTO</code> 事务提交或者手动刷新，都能将脏数据同步到数据库。除此之外，某些查询出现的时候也会导致缓存刷新。（不过不是很智能）</li><li><code>ALWAYS</code>总是，一般不用</li></ul><blockquote><p>结论，通过和同事的沟通，发现这种情况时有时无。如果出现，可以试试使用flush方法将脏数据写入数据库。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;debug时看到id准确的传入，但是没有删除。开启jpa的sql显示发现未执行delete，也没报错。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最后在deleteById后加上EntityManager的flush()方法，删除成功。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="fixBug" scheme="http://yoursite.com/categories/fixBug/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="jpa" scheme="http://yoursite.com/tags/jpa/"/>
+    
+      <category term="fixBug" scheme="http://yoursite.com/tags/fixBug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jquery-validate表单验证</title>
+    <link href="http://yoursite.com/2019/05/01/jquery-validate/"/>
+    <id>http://yoursite.com/2019/05/01/jquery-validate/</id>
+    <published>2019-04-30T18:28:15.000Z</published>
+    <updated>2019-04-30T18:29:38.883Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>jquery.validate.min.js 是一款基于jq的表单验证工具。找到的教程大部分都是同步提交下的使用，以下是我找到的ajax提交方式下的使用。</p></blockquote><ol><li><p>为表单添加表单验证</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#cForm&quot;).validate();</span><br></pre></td></tr></table></figure></li><li><p>添加规则</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#cForm input[name=&apos;name&apos;]&quot;).rules(&quot;add&quot;,&#123;required: true&#125;) //规则的意思是必填</span><br></pre></td></tr></table></figure></li></ol><p>3.ajax前验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if($(&quot;#categoryForm&quot;).valid())&#123;//验证并返回结果</span><br><span class="line">    //ajax...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>规则和验证信息自定义可以自己百度，信息不写会有默认规则。</p></blockquote><p>附较为详细的规则及自定义提示信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$().ready(function() &#123;</span><br><span class="line">// 在键盘按下并释放及提交后验证提交表单</span><br><span class="line">  $(&quot;#signupForm&quot;).validate(&#123;</span><br><span class="line">    rules: &#123;</span><br><span class="line">      firstname: &quot;required&quot;,</span><br><span class="line">      lastname: &quot;required&quot;,</span><br><span class="line">      username: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        minlength: 2</span><br><span class="line">      &#125;,</span><br><span class="line">      password: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        minlength: 5</span><br><span class="line">      &#125;,</span><br><span class="line">      confirm_password: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        minlength: 5,</span><br><span class="line">        equalTo: &quot;#password&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      email: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        email: true</span><br><span class="line">      &#125;,</span><br><span class="line">      topic: &#123;</span><br><span class="line">        required: &quot;#newsletter:checked&quot;,</span><br><span class="line">        minlength: 2</span><br><span class="line">      &#125;,</span><br><span class="line">      agree: &quot;required&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    messages: &#123;</span><br><span class="line">      firstname: &quot;请输入您的名字&quot;,</span><br><span class="line">      lastname: &quot;请输入您的姓氏&quot;,</span><br><span class="line">      username: &#123;</span><br><span class="line">        required: &quot;请输入用户名&quot;,</span><br><span class="line">        minlength: &quot;用户名必需由两个字母组成&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      password: &#123;</span><br><span class="line">        required: &quot;请输入密码&quot;,</span><br><span class="line">        minlength: &quot;密码长度不能小于 5 个字母&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      confirm_password: &#123;</span><br><span class="line">        required: &quot;请输入密码&quot;,</span><br><span class="line">        minlength: &quot;密码长度不能小于 5 个字母&quot;,</span><br><span class="line">        equalTo: &quot;两次密码输入不一致&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      email: &quot;请输入一个正确的邮箱&quot;,</span><br><span class="line">      agree: &quot;请接受我们的声明&quot;,</span><br><span class="line">      topic: &quot;请选择两个主题&quot;</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;jquery.validate.min.js 是一款基于jq的表单验证工具。找到的教程大部分都是同步提交下的使用，以下是我找到的ajax提交方式下的使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;为表单添加表单验证&lt;/p&gt;
+&lt;f
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="jquery" scheme="http://yoursite.com/tags/jquery/"/>
+    
+      <category term="表单验证" scheme="http://yoursite.com/tags/%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springMVC-Request method &#39;POST&#39; not supported</title>
+    <link href="http://yoursite.com/2019/05/01/springMVC-Request-method-POST-not-supported/"/>
+    <id>http://yoursite.com/2019/05/01/springMVC-Request-method-POST-not-supported/</id>
+    <published>2019-04-30T18:21:53.000Z</published>
+    <updated>2019-04-30T18:26:27.742Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>请求被拦截都会报这个错，前端报错405 Method not allowed。版本问题，springMVC可能隐藏部分报错信息</p></blockquote><blockquote><p>部分信息spring没有显示出来的可以看这里，而我的问题是url写错了一个字母。</p></blockquote><p>查看详细信息：</p><ul><li>进入springMVC核心sevelt<code>DispatcherServlet.java</code></li><li>在核心方法<code>doDispatch</code>的异常抛出处打断点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">catch(Exception ex)&#123;</span><br><span class="line">  dispatchException = ex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p><strong>debug处ex-&gt;detailMessage=”详细信息”</strong></p><p>问题排查步骤：</p><ol><li>url是否正确</li><li>访问方法是否正确</li><li>发送的数据和接收的数据类型是否匹配</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;请求被拦截都会报这个错，前端报错405 Method not allowed。版本问题，springMVC可能隐藏部分报错信息&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;部分信息spring没有显示出来的可以看这里，而我的
+      
+    
+    </summary>
+    
+      <category term="fixBug" scheme="http://yoursite.com/categories/fixBug/"/>
+    
+    
+      <category term="fixBug" scheme="http://yoursite.com/tags/fixBug/"/>
+    
+      <category term="405error" scheme="http://yoursite.com/tags/405error/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jvm架构</title>
+    <link href="http://yoursite.com/2019/04/25/jvm-architecture/"/>
+    <id>http://yoursite.com/2019/04/25/jvm-architecture/</id>
+    <published>2019-04-25T11:45:05.000Z</published>
+    <updated>2019-04-25T11:46:41.377Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>jvm分为三个主要的子系统：<br>(1)类加载系统 (2)运行时数据区 (3)执行引擎<br>数据加载进运行时数据区，执行引擎从数据区获取执行</p></blockquote><h1 id="一、类加载系统"><a href="#一、类加载系统" class="headerlink" title="一、类加载系统"></a>一、类加载系统</h1><blockquote><p>处理动态类加载功能，当<strong>运行时</strong>首次引用一个类时，它加载、链接、初始化该类文件</p></blockquote><h2 id="1-加载"><a href="#1-加载" class="headerlink" title="1.加载"></a>1.加载</h2><p>类加载器(BootStarp class Loader)、扩展类加载器(Extension class Loader)、应用程序类加载器(Application class Loader)三个组件完成此操作:</p><ul><li><strong>启动类加载器</strong>-从启动类路径中加载类(rt.jar,就是java基本类,javaDoc中的所有),拥有最高优先级</li><li><strong>扩展类加载器</strong>-负责加载<code>ext</code>目录的类(<code>jre\lib</code>)</li><li><strong>应用程序类加载器</strong>-加载应用程序级别类路径。</li></ul><p><strong>加载机制:</strong></p><ul><li><strong>全盘负责</strong>:类加载器加载一个类时，默认该类依赖和引用的其它类也由该加载器负责.</li><li><strong>双亲委派</strong>: 先让父类加载试图加载的Class依次递归，父类加载不了才自己加载。</li><li><strong>缓存机制</strong>:所有加载过的类都会被缓存，程序使用类时加载器先从缓存中寻找。所以修改Class后必须重启JVM。</li></ul><p><strong>用户类加载器</strong>=&gt;<strong>系统类加载器</strong>=&gt;<strong>扩展类加载器</strong>=&gt;<strong>跟类加载器</strong></p><blockquote><p>双亲委派优点：1.防止重复加载 2.防止底层传入虚假的核心JavaAPI</p></blockquote><h2 id="2-链接"><a href="#2-链接" class="headerlink" title="2.链接"></a>2.链接</h2><ul><li><strong>校验</strong>-字节码校验器会校验生成的字节码是否正确，失败提示校验错误信息。</li><li><strong>准备</strong>-分配内存并初始化<strong>默认值</strong>给所有静态变量。</li><li><strong>解析</strong>-所有的符号内存引用被方法区(<code>Method Area</code>)的<strong>原始引</strong>用替代。</li></ul><h2 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h2><blockquote><p>这是类加载的最后阶段，静态变量赋值，静态代码块被执行。</p></blockquote><h1 id="二、运行时数据区"><a href="#二、运行时数据区" class="headerlink" title="二、运行时数据区"></a>二、运行时数据区</h1><p>之前的文章jmm(java内存模型)有讲到，不再赘述。</p><h1 id="三、执行引擎"><a href="#三、执行引擎" class="headerlink" title="三、执行引擎"></a>三、执行引擎</h1><p>将数据区内的字节码逐段执行。</p><h2 id="1-解释器"><a href="#1-解释器" class="headerlink" title="1.解释器"></a>1.解释器</h2><blockquote><p>能快速解析字节码，但是对于重复的方法会每次都重新解析</p></blockquote><h2 id="2-即时编译器JIT-Just-In-Time-Compiler"><a href="#2-即时编译器JIT-Just-In-Time-Compiler" class="headerlink" title="2.即时编译器JIT(Just In Time Compiler)"></a>2.即时编译器JIT(Just In Time Compiler)</h2><blockquote><p>为了解决解释器的缺点，当被判定为重复代码将使用JIT编译，并重复利用。</p></blockquote><p>其它：</p><ul><li>中间代码生成器-生成中加代码</li><li>代码优化器 -负责优化上面生成的代码</li><li>目标代码生成器-生成既期待吗或本机代码</li><li>探测器(Profiler)-负责寻找被多次调用的方法。</li></ul><h2 id="垃圾回收机制-GC"><a href="#垃圾回收机制-GC" class="headerlink" title="垃圾回收机制(GC)"></a>垃圾回收机制(GC)</h2><p>之后另起一章讲述</p><h2 id="JVM-参数"><a href="#JVM-参数" class="headerlink" title="JVM 参数"></a>JVM 参数</h2><ul><li>堆：<code>-Xms</code> <code>-Xmx</code>(一般设置一样的值，否则内存抖动)</li><li>线程：<code>-Xss</code> 线程堆栈调用深度</li><li>新生代初始大小：<code>–XX:NewSize–XX:MaxNewSize</code>指定新生代初始大小和最大大小。</li><li><code>-XX:NewRatio</code>   是年老代 新生代相对的比例</li><li><code>-XX:SurvivorRatio</code>配置的是在新生代里面<code>Eden</code>和一个<code>Servive</code>的比例</li><li></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;jvm分为三个主要的子系统：&lt;br&gt;(1)类加载系统 (2)运行时数据区 (3)执行引擎&lt;br&gt;数据加载进运行时数据区，执行引擎从数据区获取执行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、类加载系统&quot;&gt;&lt;a href=&quot;#一、类加载系
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
+    
+  </entry>
   
   <entry>
     <title>热爱生命</title>
@@ -69,9 +195,9 @@
       <category term="java" scheme="http://yoursite.com/categories/java/"/>
     
     
-      <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
     
       <category term="jmm" scheme="http://yoursite.com/tags/jmm/"/>
     
@@ -101,11 +227,11 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
       <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
-    
-      <category term="http" scheme="http://yoursite.com/tags/http/"/>
     
   </entry>
   
@@ -221,9 +347,9 @@
     
       <category term="springBoot" scheme="http://yoursite.com/tags/springBoot/"/>
     
-      <category term="http" scheme="http://yoursite.com/tags/http/"/>
-    
       <category term="RestTemplate" scheme="http://yoursite.com/tags/RestTemplate/"/>
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
     
   </entry>
   

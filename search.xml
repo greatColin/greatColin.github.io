@@ -215,11 +215,11 @@
       
         <tags>
             
+            <tag> http </tag>
+            
             <tag> vue </tag>
             
             <tag> ajax </tag>
-            
-            <tag> http </tag>
             
         </tags>
       
@@ -329,9 +329,9 @@
             
             <tag> springBoot </tag>
             
-            <tag> http </tag>
-            
             <tag> RestTemplate </tag>
+            
+            <tag> http </tag>
             
         </tags>
       

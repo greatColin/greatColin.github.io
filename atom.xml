@@ -258,11 +258,11 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
       <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
-    
-      <category term="http" scheme="http://yoursite.com/tags/http/"/>
     
   </entry>
   
@@ -378,9 +378,9 @@
     
       <category term="springBoot" scheme="http://yoursite.com/tags/springBoot/"/>
     
-      <category term="http" scheme="http://yoursite.com/tags/http/"/>
-    
       <category term="RestTemplate" scheme="http://yoursite.com/tags/RestTemplate/"/>
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
     
   </entry>
   

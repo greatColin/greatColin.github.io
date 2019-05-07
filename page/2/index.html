@@ -377,6 +377,1401 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/learnBat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/02/learnBat/" class="post-title-link" itemprop="url">windows下批处理BAT简单用法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-02 01:25:37 / 修改时间：03:27:39" itemprop="dateCreated datePublished" datetime="2019-05-02T01:25:37+08:00">2019-05-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>bat是windows的dos界面下对于各种命令操作的一中批处理语言，可以作为胶水语言连接其他语言，也可以处理简单的操作以及执行操作系统命令。<br>普通文本文件后缀改成<code>.bat</code>就可以成为批处理文件</p>
+</blockquote>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ul>
+<li><code>REM xxx</code></li>
+<li><code>:: xxx</code></li>
+</ul>
+<h1 id="基础美观操作"><a href="#基础美观操作" class="headerlink" title="基础美观操作"></a>基础美观操作</h1><ul>
+<li><code>title newTitle</code>设置标题</li>
+<li><code>color 01</code>设置颜色，0是黑色背景，1是蓝色前景。其他搭配见<code>color /?</code></li>
+<li><code>mode con cols=113 lines=15 &amp; color 9f</code>设置列113、行15、颜色9f</li>
+<li><code>pause</code>暂停，提示任意输入继续</li>
+</ul>
+<p>#转义</p>
+<ul>
+<li><code>,</code>相当空格</li>
+<li><code>^</code>转义字符</li>
+<li><code>命令1；命令2</code>报错后会继续执行</li>
+</ul>
+<h1 id="基础输入输出"><a href="#基础输入输出" class="headerlink" title="基础输入输出"></a>基础输入输出</h1><ul>
+<li><code>echo &quot;你想说什么&quot;</code>输出文字</li>
+<li><code>echo off</code>关闭c:\user&gt;_ 的前缀及其他提示，只留下光标</li>
+<li><code>echo on</code>恢复回显</li>
+<li><code>@echo off</code>连自身的命令回显都不要</li>
+<li><code>echo.</code>输出空行，换行</li>
+<li><code>echo &quot;somethine&quot;&gt;filename</code>把信息写入文件（覆盖）</li>
+<li><code>echo &quot;somethine&quot;&gt;&gt;filename</code>把信息写入文件（追加）</li>
+<li><code>echo (Ctrl+G)</code>喇叭鸣响，对个ctrl+G可响多次</li>
+<li><code>%0 %1 %2</code>调用批处理时传的参数，<code>%0</code>自身<code>%1</code>第1个<blockquote>
+<p>例：复制自身<code>copy %0 d:\wind.bat</code></p>
+</blockquote>
+</li>
+<li><code>set /p choice=          输入一个字符:</code>获取输入</li>
+</ul>
+<h1 id="组合命令"><a href="#组合命令" class="headerlink" title="组合命令"></a>组合命令</h1><ul>
+<li><code>第一个命令|第二个命令</code>管道命令，第一个的输出当成第二个的输入。<blockquote>
+<p>例：<code>dir c:\|find “txt”</code></p>
+</blockquote>
+</li>
+<li><p><code>命令一&amp;命令二</code>组合执行等于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(</span><br><span class="line">命令一</span><br><span class="line">命令二</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&amp;&amp; 和 ||</code> 同java短路</p>
+</li>
+</ul>
+<h1 id="循环for"><a href="#循环for" class="headerlink" title="循环for"></a>循环for</h1><ul>
+<li><code>for %%i in (set) do somthing</code>有/d /l /r /f 四个属性<br><strong>/D属性</strong></li>
+<li><code>for /d %%i in (c:\*) do echo %%i</code>搜索C盘下的文件</li>
+<li><code>for /d %%i in (???) do echo %%i</code>搜索当前目录下有1-3个字母的文件<br><strong>/R属性</strong></li>
+<li><code>FOR /R [[drive:]path] %%variable IN (set) DO command [command-parameters]</code>/r后制定根目录，遍历目录树，如果没有路径默认当前目录。set为匹配规则</li>
+<li><code>for /r c:\ %%i in (*.exe) do echo %%i</code>找c盘下的exe文件<br><strong>/L属性</strong></li>
+<li><code>for /l %%i in (0,2,6) do @echo %%i</code>从0开始，每次加2，直到6.<br><strong>/F属性</strong></li>
+<li><code>FOR /F “eol=; tokens=1,3* delims=,- ” %%i in (test.txt) do echo %%i %%j %%k</code>处理文件test.txt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eol=;          分号开头的行为注释行</span><br><span class="line">tokens=1,3*    将每行第1段,第3段和剩余字段分别赋予变量%%i，%%j，%%k</span><br><span class="line">delims=,-     （减号后有一空格）以逗号减号和空格为分隔符，空格必须放在最后</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="循环if"><a href="#循环if" class="headerlink" title="循环if"></a>循环if</h1><ul>
+<li><p>判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set /p p=请输入</span><br><span class="line">if %p% LEQ 9 (</span><br><span class="line"> echo %p%</span><br><span class="line">) else (</span><br><span class="line"> echo 9</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关系符</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>含义</th>
+<th>关系符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等于</td>
+<td>equ</td>
+</tr>
+<tr>
+<td>大于</td>
+<td>gtr</td>
+</tr>
+<tr>
+<td>大于或等于</td>
+<td>geq</td>
+</tr>
+<tr>
+<td>小于</td>
+<td>lss</td>
+</tr>
+<tr>
+<td>小于或等于</td>
+<td>leq</td>
+</tr>
+<tr>
+<td>不等于</td>
+<td>neq</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if exist %cd%\test.LOG (</span><br><span class="line">	echo 存在！</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if not exist %cd%\test.LOG (</span><br><span class="line">	echo 不存在！</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h1><ul>
+<li><code>:start</code>标注一个叫start的点</li>
+<li><code>GOTO start</code>跳转到start</li>
+</ul>
+<h1 id="文件关联"><a href="#文件关联" class="headerlink" title="文件关联"></a>文件关联</h1><ul>
+<li><code>assoc</code>设置’文件扩展名’关联，关联到’文件类型’</li>
+<li><code>ftype</code>设置’文件类型’关联，关联到’执行程序和参数’</li>
+<li><code>assoc</code>显示所有’文件扩展名’关联</li>
+<li><code>assoc .txt</code>显示.txt代表的’文件类型’，结果显示 .txt=txtfile</li>
+<li><code>assoc .doc</code>显示.doc代表的’文件类型’，结果显示 .doc=Word.Document.8</li>
+<li><code>assoc .exe</code>显示.exe代表的’文件类型’，结果显示 .exe=exefile</li>
+<li><code>ftype</code>显示所有’文件类型’关联</li>
+<li><code>ftype exefile</code>显示exefile类型关联的命令行，结果显示 exefile=”%1” %* </li>
+<li><code>assoc .txt=Word.Document.8</code>设置.txt为word类型的文档，可以看到.txt文件的图标都变了</li>
+</ul>
+<blockquote>
+<p>ftype exefile=”%1” %*<br>恢复 exefile 的正确关联<br>如果该关联已经被破坏，可以运行 command.com ，再输入这条命令</p>
+</blockquote>
+<h1 id="变量延迟"><a href="#变量延迟" class="headerlink" title="变量延迟"></a>变量延迟</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line">set a=4</span><br><span class="line">set a=5 &amp; echo !a!</span><br><span class="line">pause </span><br><span class="line">结果：5</span><br></pre></td></tr></table></figure>
+<h1 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ATTRIB [+R|-R] [+A|-A] [+S|-S] [+H|-H] [[drive:] [path] filename] [/S [/D]]</span><br><span class="line">  +   设置属性。</span><br><span class="line">  -    清除属性。</span><br><span class="line">  R   只读文件属性。</span><br><span class="line">  A   存档文件属性。</span><br><span class="line">  S   系统文件属性。</span><br><span class="line">  H   隐藏文件属性。</span><br><span class="line">  [drive:][path][filename]</span><br><span class="line">      指定要处理的文件属性。</span><br><span class="line">  /S  处理当前文件夹及其子文件夹中的匹配文件。</span><br><span class="line">  /D  也处理文件夹。</span><br></pre></td></tr></table></figure>
+<h1 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h1><ul>
+<li><code>%ALLUSERSPROFILE%</code>本地 返回“所有用户”配置文件的位置。</li>
+<li><code>%APPDATA%</code>本地 返回默认情况下应用程序存储数据的位置。</li>
+<li><code>%CD%</code>本地 返回当前目录字符串。</li>
+<li><code>%CMDCMDLINE%</code>本地 返回用来启动当前的 Cmd.exe 的准确命令行。</li>
+<li><code>%CMDEXTVERSION%</code>系统 返回当前的“命令处理程序扩展”的版本号。</li>
+<li><code>%COMPUTERNAME%</code>系统 返回计算机的名称。</li>
+<li><code>%COMSPEC%</code>系统 返回命令行解释器可执行程序的准确路径。</li>
+<li><code>%DATE%</code>系统 返回当前日期。使用与 date /t 命令相同的格式。由 Cmd.exe 生成。有关<br>date 命令的详细信息，请参阅 Date。</li>
+<li><code>%ERRORLEVEL%</code>系统 返回上一条命令的错误代码。通常用非零值表示错误。</li>
+<li><code>%HOMEDRIVE%</code>系统 返回连接到用户主目录的本地工作站驱动器号。基于主目录值而设置。用户主目录是在“本地用户和组”中指定的。</li>
+<li><code>%HOMEPATH%</code>系统 返回用户主目录的完整路径。基于主目录值而设置。用户主目录是在“本地用户和组”中指定的。</li>
+<li><code>%HOMESHARE%</code>系统 返回用户的共享主目录的网络路径。基于主目录值而设置。用户主目录是在“本地用户和组”中指定的。</li>
+<li><code>%LOGONSERVER%</code>本地 返回验证当前登录会话的域控制器的名称。</li>
+<li><code>%NUMBER_OF_PROCESSORS%</code>系统 指定安装在计算机上的处理器的数目。</li>
+<li><code>%OS%</code>系统 返回操作系统名称。Windows 2000 显示其操作系统为 Windows_NT。</li>
+<li><code>%PATH%</code>系统 指定可执行文件的搜索路径。</li>
+<li><code>%PATHEXT%</code>系统 返回操作系统认为可执行的文件扩展名的列表。</li>
+<li><code>%PROCESSOR_ARCHITECTURE%</code>系统 返回处理器的芯片体系结构。值：x86 或 IA64 基于Itanium</li>
+<li><code>%PROCESSOR_IDENTFIER%</code>系统 返回处理器说明。</li>
+<li><code>%PROCESSOR_LEVEL%</code>系统 返回计算机上安装的处理器的型号。</li>
+<li><code>%PROCESSOR_REVISION%</code>系统 返回处理器的版本号。</li>
+<li><code>%PROMPT%</code>本地 返回当前解释程序的命令提示符设置。由 Cmd.exe 生成。</li>
+<li><code>%RANDOM%</code>系统 返回 0 到 32767 之间的任意十进制数字。由 Cmd.exe 生成。</li>
+<li><code>%SYSTEMDRIVE%</code>系统 返回包含 Windows server operating system 根目录（即系统根目录）的驱动器。</li>
+<li><code>%SYSTEMROOT%</code>系统 返回 Windows server operating system 根目录的位置。</li>
+<li><code>%TEMP%</code>和<code>%TMP%</code>系统和用户 返回对当前登录用户可用的应用程序所使用的默认临时目录。有些应用程序需要 TEMP，而其他应用程序则需要 TMP。</li>
+<li><code>%TIME%</code>系统 返回当前时间。使用与 time /t 命令相同的格式。由 Cmd.exe 生成。有关<br>time 命令的详细信息，请参阅 Time。</li>
+<li><code>%USERDOMAIN%</code>本地 返回包含用户帐户的域的名称。</li>
+<li><code>%USERNAME%</code>本地 返回当前登录的用户的名称。</li>
+<li><code>%USERPROFILE%</code>本地 返回当前用户的配置文件的位置。</li>
+<li><code>%WINDIR%</code>系统 返回操作系统目录的位置。</li>
+</ul>
+<h1 id="自动ftp下载"><a href="#自动ftp下载" class="headerlink" title="自动ftp下载"></a>自动ftp下载</h1><p><code>ftp  -n -s:[[drive:]path]filename</code><br>filename文件内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">open 90.52.8.3   ＃打开ip</span><br><span class="line">user iware       ＃用户为iware</span><br><span class="line">password8848    ＃密码</span><br><span class="line">bin             ＃二进制传输模式</span><br><span class="line">prompt</span><br><span class="line">cd tmp1         ＃切换至iware用户下的tmp1目录</span><br><span class="line">pwd</span><br><span class="line">lcd d:\download   ＃本地目录</span><br><span class="line">mget *          ＃下载tmp1目录下的所有文件</span><br><span class="line">bye             ＃退出ftp</span><br></pre></td></tr></table></figure></p>
+<h1 id="通过ping实现延迟，完成进度条"><a href="#通过ping实现延迟，完成进度条" class="headerlink" title="通过ping实现延迟，完成进度条"></a>通过ping实现延迟，完成进度条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">mode con cols=113 lines=15 &amp;color 9f</span><br><span class="line">cls</span><br><span class="line">echo.</span><br><span class="line">echo  程序正在初始化… </span><br><span class="line">echo.</span><br><span class="line">echo  ┌──────────────────────────────────────┐</span><br><span class="line">set/p=  ■&lt;nul</span><br><span class="line">for /L %%i in (1 1 38) do set /p a=■&lt;nul&amp;ping /n 1 127.0.0.1&gt;nul</span><br><span class="line">echo   100%%</span><br><span class="line">echo  └──────────────────────────────────────┘</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<h1 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h1><p>生成5个100以内的随机数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line">for /L %%i in (1 1 5) do (</span><br><span class="line">   set /a randomNum=!random!%%100</span><br><span class="line">   echo 随机数：!randomNum!</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/fixBug-jpa-deleteById/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/01/fixBug-jpa-deleteById/" class="post-title-link" itemprop="url">jpa deleteById()未删除</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 02:32:15 / 修改时间：02:35:32" itemprop="dateCreated datePublished" datetime="2019-05-01T02:32:15+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/fixBug/" itemprop="url" rel="index"><span itemprop="name">fixBug</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>debug时看到id准确的传入，但是没有删除。开启jpa的sql显示发现未执行delete，也没报错。</p>
+</blockquote>
+<p>最后在deleteById后加上EntityManager的flush()方法，删除成功。</p>
+<blockquote>
+<p>FlushMode提供了4种缓存模式：MANUAL、COMMIT、AUTO和ALWAYS。使用<code>setFlushModel</code>切换</p>
+</blockquote>
+<ul>
+<li><code>MANUAL</code> 必须手动调用<code>flush()</code></li>
+<li><code>COMMIT</code> 事物提交才会</li>
+<li><code>AUTO</code> 事务提交或者手动刷新，都能将脏数据同步到数据库。除此之外，某些查询出现的时候也会导致缓存刷新。（不过不是很智能）</li>
+<li><code>ALWAYS</code>总是，一般不用</li>
+</ul>
+<blockquote>
+<p>结论，通过和同事的沟通，发现这种情况时有时无。如果出现，可以试试使用flush方法将脏数据写入数据库。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/jquery-validate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/01/jquery-validate/" class="post-title-link" itemprop="url">jquery-validate表单验证</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 02:28:15" itemprop="dateCreated datePublished" datetime="2019-05-01T02:28:15+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-07 21:35:41" itemprop="dateModified" datetime="2019-05-07T21:35:41+08:00">2019-05-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>jquery.validate.min.js 是一款基于jq的表单验证工具。找到的教程大部分都是同步提交下的使用，以下是我找到的ajax提交方式下的使用。</p>
+</blockquote>
+<ol>
+<li><p>为表单添加表单验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#cForm&quot;).validate();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#cForm input[name=&apos;name&apos;]&quot;).rules(&quot;add&quot;,&#123;required: true&#125;) //规则的意思是必填</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ajax前验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if($(&quot;#categoryForm&quot;).valid())&#123;//验证并返回结果</span><br><span class="line">    //ajax...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>规则和验证信息自定义可以自己百度，信息不写会有默认规则。</p>
+</blockquote>
+<p>附较为详细的规则及自定义提示信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$().ready(function() &#123;</span><br><span class="line">// 在键盘按下并释放及提交后验证提交表单</span><br><span class="line">  $(&quot;#signupForm&quot;).validate(&#123;</span><br><span class="line">    rules: &#123;</span><br><span class="line">      firstname: &quot;required&quot;,</span><br><span class="line">      lastname: &quot;required&quot;,</span><br><span class="line">      username: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        minlength: 2</span><br><span class="line">      &#125;,</span><br><span class="line">      password: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        minlength: 5</span><br><span class="line">      &#125;,</span><br><span class="line">      confirm_password: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        minlength: 5,</span><br><span class="line">        equalTo: &quot;#password&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      email: &#123;</span><br><span class="line">        required: true,</span><br><span class="line">        email: true</span><br><span class="line">      &#125;,</span><br><span class="line">      topic: &#123;</span><br><span class="line">        required: &quot;#newsletter:checked&quot;,</span><br><span class="line">        minlength: 2</span><br><span class="line">      &#125;,</span><br><span class="line">      agree: &quot;required&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    messages: &#123;</span><br><span class="line">      firstname: &quot;请输入您的名字&quot;,</span><br><span class="line">      lastname: &quot;请输入您的姓氏&quot;,</span><br><span class="line">      username: &#123;</span><br><span class="line">        required: &quot;请输入用户名&quot;,</span><br><span class="line">        minlength: &quot;用户名必需由两个字母组成&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      password: &#123;</span><br><span class="line">        required: &quot;请输入密码&quot;,</span><br><span class="line">        minlength: &quot;密码长度不能小于 5 个字母&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      confirm_password: &#123;</span><br><span class="line">        required: &quot;请输入密码&quot;,</span><br><span class="line">        minlength: &quot;密码长度不能小于 5 个字母&quot;,</span><br><span class="line">        equalTo: &quot;两次密码输入不一致&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      email: &quot;请输入一个正确的邮箱&quot;,</span><br><span class="line">      agree: &quot;请接受我们的声明&quot;,</span><br><span class="line">      topic: &quot;请选择两个主题&quot;</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/springMVC-Request-method-POST-not-supported/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/01/springMVC-Request-method-POST-not-supported/" class="post-title-link" itemprop="url">springMVC-Request method 'POST' not supported</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 02:21:53 / 修改时间：02:26:27" itemprop="dateCreated datePublished" datetime="2019-05-01T02:21:53+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/fixBug/" itemprop="url" rel="index"><span itemprop="name">fixBug</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>请求被拦截都会报这个错，前端报错405 Method not allowed。版本问题，springMVC可能隐藏部分报错信息</p>
+</blockquote>
+<blockquote>
+<p>部分信息spring没有显示出来的可以看这里，而我的问题是url写错了一个字母。</p>
+</blockquote>
+<p>查看详细信息：</p>
+<ul>
+<li>进入springMVC核心sevelt<code>DispatcherServlet.java</code></li>
+<li>在核心方法<code>doDispatch</code>的异常抛出处打断点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">catch(Exception ex)&#123;</span><br><span class="line">  dispatchException = ex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>debug处ex-&gt;detailMessage=”详细信息”</strong></p>
+<p>问题排查步骤：</p>
+<ol>
+<li>url是否正确</li>
+<li>访问方法是否正确</li>
+<li>发送的数据和接收的数据类型是否匹配</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/jvm-architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/25/jvm-architecture/" class="post-title-link" itemprop="url">jvm架构</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-25 19:45:05" itemprop="dateCreated datePublished" datetime="2019-04-25T19:45:05+08:00">2019-04-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-07 21:36:45" itemprop="dateModified" datetime="2019-05-07T21:36:45+08:00">2019-05-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>jvm分为三个主要的子系统：<br>(1)类加载系统 (2)运行时数据区 (3)执行引擎<br>数据加载进运行时数据区，执行引擎从数据区获取执行</p>
+</blockquote>
+<h1 id="一、类加载系统"><a href="#一、类加载系统" class="headerlink" title="一、类加载系统"></a>一、类加载系统</h1><blockquote>
+<p>处理动态类加载功能，当<strong>运行时</strong>首次引用一个类时，它加载、链接、初始化该类文件</p>
+</blockquote>
+<h2 id="1-加载"><a href="#1-加载" class="headerlink" title="1.加载"></a>1.加载</h2><p>类加载器(BootStarp class Loader)、扩展类加载器(Extension class Loader)、应用程序类加载器(Application class Loader)三个组件完成此操作:</p>
+<ul>
+<li><strong>启动类加载器</strong>-从启动类路径中加载类(rt.jar,就是java基本类,javaDoc中的所有),拥有最高优先级</li>
+<li><strong>扩展类加载器</strong>-负责加载<code>ext</code>目录的类(<code>jre\lib</code>)</li>
+<li><strong>应用程序类加载器</strong>-加载应用程序级别类路径。</li>
+</ul>
+<p><strong>加载机制:</strong></p>
+<ul>
+<li><strong>全盘负责</strong>:类加载器加载一个类时，默认该类依赖和引用的其它类也由该加载器负责.</li>
+<li><strong>双亲委派</strong>: 先让父类加载试图加载的Class依次递归，父类加载不了才自己加载。</li>
+<li><strong>缓存机制</strong>:所有加载过的类都会被缓存，程序使用类时加载器先从缓存中寻找。所以修改Class后必须重启JVM。</li>
+</ul>
+<p><strong>用户类加载器</strong>=&gt;<strong>系统类加载器</strong>=&gt;<strong>扩展类加载器</strong>=&gt;<strong>跟类加载器</strong></p>
+<blockquote>
+<p>双亲委派优点：1.防止重复加载 2.防止底层传入虚假的核心JavaAPI</p>
+</blockquote>
+<h2 id="2-链接"><a href="#2-链接" class="headerlink" title="2.链接"></a>2.链接</h2><ul>
+<li><strong>校验</strong>-字节码校验器会校验生成的字节码是否正确，失败提示校验错误信息。</li>
+<li><strong>准备</strong>-分配内存并初始化<strong>默认值</strong>给所有静态变量。</li>
+<li><strong>解析</strong>-所有的符号内存引用被方法区(<code>Method Area</code>)的<strong>原始引</strong>用替代。</li>
+</ul>
+<h2 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h2><blockquote>
+<p>这是类加载的最后阶段，静态变量赋值，静态代码块被执行。</p>
+</blockquote>
+<h1 id="二、运行时数据区"><a href="#二、运行时数据区" class="headerlink" title="二、运行时数据区"></a>二、运行时数据区</h1><p>之前的文章jmm(java内存模型)有讲到，不再赘述。</p>
+<h1 id="三、执行引擎"><a href="#三、执行引擎" class="headerlink" title="三、执行引擎"></a>三、执行引擎</h1><p>将数据区内的字节码逐段执行。</p>
+<h2 id="1-解释器"><a href="#1-解释器" class="headerlink" title="1.解释器"></a>1.解释器</h2><blockquote>
+<p>能快速解析字节码，但是对于重复的方法会每次都重新解析</p>
+</blockquote>
+<h2 id="2-即时编译器JIT-Just-In-Time-Compiler"><a href="#2-即时编译器JIT-Just-In-Time-Compiler" class="headerlink" title="2.即时编译器JIT(Just In Time Compiler)"></a>2.即时编译器JIT(Just In Time Compiler)</h2><blockquote>
+<p>为了解决解释器的缺点，当被判定为重复代码将使用JIT编译，并重复利用。</p>
+</blockquote>
+<p>其它：</p>
+<ul>
+<li>中间代码生成器-生成中加代码</li>
+<li>代码优化器 -负责优化上面生成的代码</li>
+<li>目标代码生成器-生成既期待吗或本机代码</li>
+<li>探测器(Profiler)-负责寻找被多次调用的方法。</li>
+</ul>
+<h2 id="垃圾回收机制-GC"><a href="#垃圾回收机制-GC" class="headerlink" title="垃圾回收机制(GC)"></a>垃圾回收机制(GC)</h2><p>之后另起一章讲述</p>
+<h2 id="JVM-参数"><a href="#JVM-参数" class="headerlink" title="JVM 参数"></a>JVM 参数</h2><ul>
+<li>堆：<code>-Xms</code> <code>-Xmx</code>(一般设置一样的值，否则内存抖动)</li>
+<li>线程：<code>-Xss</code> 线程堆栈调用深度</li>
+<li>新生代初始大小：<code>–XX:NewSize–XX:MaxNewSize</code>指定新生代初始大小和最大大小。</li>
+<li><code>-XX:NewRatio</code>   是年老代 新生代相对的比例</li>
+<li><code>-XX:SurvivorRatio</code>配置的是在新生代里面<code>Eden</code>和一个<code>Servive</code>的比例</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/jvm-jmm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/24/jvm-jmm/" class="post-title-link" itemprop="url">jvm内存模型jmm</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-24 20:56:31 / 修改时间：23:11:56" itemprop="dateCreated datePublished" datetime="2019-04-24T20:56:31+08:00">2019-04-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。</p>
+</blockquote>
+<p>本文整理自-<a href="https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">深入理解JVM-内存模型（jmm）和GC</a>的上半部分</p>
+<hr>
+<h1 id="一、电脑内存模型"><a href="#一、电脑内存模型" class="headerlink" title="一、电脑内存模型"></a>一、电脑内存模型</h1><ol>
+<li><p>背景</p>
+<blockquote>
+<p>随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓存，作为cpu和内存间的缓冲区域。</p>
+</blockquote>
+</li>
+<li><p>带来的问题</p>
+<blockquote>
+<p>每个cpu各自的一套缓存(一级缓存、二级缓存、三级缓存),如何保证多处理器运算到同一个内存区域时的数据一致性？</p>
+</blockquote>
+</li>
+<li><p>解决方法</p>
+<blockquote>
+<p>为了解决这个问题，各个处理器需要遵循缓存一致性协议与主存交互</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>在cpu层面，内存屏障(Memory Barrier)提供了支持(硬件层支持)：</strong></p>
+<ol>
+<li><p>内存屏障的类型</p>
+<blockquote>
+<p>硬件层的内存屏障分为:<code>Load Barrier</code>(读屏障)和<code>Store Barrier</code>(写屏障)</p>
+</blockquote>
+</li>
+<li><p>内存屏障作用</p>
+<blockquote>
+<p>1.cpu执行指令可能是；无序的，内存屏障可以组织屏障两侧进行指令重排。<br>2.强制把写缓冲区/高速缓存中的数据失效，从而强制从主存中获取。</p>
+</blockquote>
+</li>
+<li><p>java中的生成jvm内存屏障</p>
+<blockquote>
+<p>使用关键词volatitle修饰变量</p>
+</blockquote>
+</li>
+</ol>
+<p>相当于变量读写加锁<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatitleValue</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String value;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> String <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span>  <span class="keyword">void</span> <span class="title">set</span><span class="params">(String value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li><p>volatile变量特性</p>
+<blockquote>
+<p>1.可见性，该变量的读一定可以看到读之前最后的写<br>2.原子性，对于该变量的读写具有原子性。</p>
+</blockquote>
+<h1 id="java内存区域"><a href="#java内存区域" class="headerlink" title="java内存区域"></a>java内存区域</h1><blockquote>
+<p>jvm主要有 sun的<code>HotSpot/JRockit</code>和IBM的<code>IBMJVM</code>,其中HotSpot为主流，在此探讨HotSpot虚拟机。</p>
+</blockquote>
+</li>
+<li><p>Java内存模型（Java Memory Model ,JMM）</p>
+<blockquote>
+<p>如开题所说，jmm是jvm的一种规范。使语言不能直接访问硬件内存，作为中转以解决各硬件和操作系统的差异问题。</p>
+</blockquote>
+</li>
+<li><p>虚拟机五大数据区域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方法区、堆是线程共享的</span><br><span class="line">栈、本地方法栈、计数器是线程私有的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1 计数器</p>
+<blockquote>
+<p>线程执行java方法时指向字节码，方便cpu线程切换时切换回正确位置</p>
+</blockquote>
+</li>
+</ol>
+<p>注：内存中唯一没有OutOfMemoryError的区域</p>
+<ol start="2">
+<li>2 虚拟机栈<blockquote>
+<p>由栈帧组成，每个方法执行的时候都会创建栈帧存储变量表，操作栈，动态链接，方法出入口等。</p>
+</blockquote>
+</li>
+</ol>
+<p>注：方法调用入栈，调用完出栈。局部变量表大小在方法运行前就完全确定了</p>
+<ol start="2">
+<li>3本地方法栈<blockquote>
+<p>虚拟机栈调用的是java方法(字节码文件),本地方法栈则是调动native方法(c、c++)的实现方法</p>
+</blockquote>
+<hr>
+<strong>以下为线程共有的</strong></li>
+<li>4堆<blockquote>
+<p>一般来说对象实例及数组都是在堆上被分配内存。堆作为最大的内存区域也是GC(内存回收机制)主要管理的区域。根据规范，堆可以存在与物理上不连续的内存空间，可设定固定大小也可扩展。(-Xmx和-Xms)。</p>
+</blockquote>
+</li>
+</ol>
+<p>注：没有内存可分配会报OOM(OutOfMemory)</p>
+<ol start="2">
+<li>5方法区<blockquote>
+<p>存储已被虚拟机加载的类信息、常量、静态变量、静态方法、静态代码块。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>再回顾一下</strong><br>线程私有的:</p>
+<table>
+<thead>
+<tr>
+<th>区域名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计数器</td>
+<td>cpu线程切换后找到正确位置</td>
+</tr>
+<tr>
+<td>jvm栈</td>
+<td>引用java方法</td>
+</tr>
+<tr>
+<td>native栈</td>
+<td>引用本地c/c++方法及功能</td>
+</tr>
+</tbody>
+</table>
+<p>线程共享的:</p>
+<table>
+<thead>
+<tr>
+<th>区域名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>堆</td>
+<td>对象实例、数组</td>
+</tr>
+<tr>
+<td>方法区</td>
+<td>类的静态信息</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>对象在内存中的结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.对象头//</span><br><span class="line">2.数据实体//对象信息</span><br><span class="line">3.对齐填充//占位</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>对象头(markword)</strong>说明：</p>
+<blockquote>
+<ol>
+<li>64操作系统下16字节(开启指针压缩12)</li>
+<li>synchronized的锁信息就存储在这里</li>
+<li>根据锁位偏移有四种锁状态<code>无锁态</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code></li>
+</ol>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/vue-Axios/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1145,709 +2540,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/springboot-resttemplate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="colin">
-      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="策马踏清风">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/24/springboot-resttemplate/" class="post-title-link" itemprop="url">SpringBoot-RestTemplate基本用法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-24 20:08:15 / 修改时间：23:14:40" itemprop="dateCreated datePublished" datetime="2019-04-24T20:08:15+08:00">2019-04-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><code>RestTemplate</code>是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过<code>setRequestFactory</code>属性切换到其它http源， <code>Apache</code> <code>HttpComponents</code> 、<code>Netty</code> 、<code>OkHttp</code>等。</p>
-</blockquote>
-<h1 id="一、入口"><a href="#一、入口" class="headerlink" title="一、入口"></a>一、入口</h1><p>入口方法主要根据HTP的六个方法制定的：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">HTTP method</th>
-<th style="text-align:center">RestTempalte methods</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">GET</td>
-<td style="text-align:center">getForObject</td>
-</tr>
-<tr>
-<td style="text-align:center">     -</td>
-<td style="text-align:center">getForENtity</td>
-</tr>
-<tr>
-<td style="text-align:center">POST</td>
-<td style="text-align:center">poetForLocation</td>
-</tr>
-<tr>
-<td style="text-align:center">     -</td>
-<td style="text-align:center">postForObject</td>
-</tr>
-<tr>
-<td style="text-align:center">DELETE</td>
-<td style="text-align:center">delete</td>
-</tr>
-<tr>
-<td style="text-align:center">PUT</td>
-<td style="text-align:center">put</td>
-</tr>
-<tr>
-<td style="text-align:center">HEAD</td>
-<td style="text-align:center">headForHeaders</td>
-</tr>
-<tr>
-<td style="text-align:center">OPTIONS</td>
-<td style="text-align:center">optionsForAllow</td>
-</tr>
-<tr>
-<td style="text-align:center">通用方法</td>
-<td style="text-align:center">exchange</td>
-</tr>
-<tr>
-<td style="text-align:center">     -</td>
-<td style="text-align:center">execute</td>
-</tr>
-</tbody>
-</table>
-<p>注：默认使用<code>HttpMessageConverter</code>实例完成<code>POJP</code>和<code>HTTP</code>的转换，也可以通过<code>setMessageConverters</code>注册其它的转换器。（<code>@ResponseBody</code>使用的也是<code>HttpMessageConverter</code>）</p>
-<h1 id="二、GET"><a href="#二、GET" class="headerlink" title="二、GET"></a>二、GET</h1><blockquote>
-<p><code>getForObject()</code>和<code>getForEntity()</code></p>
-</blockquote>
-<h2 id="getForObject-方法"><a href="#getForObject-方法" class="headerlink" title="getForObject()方法"></a>getForObject()方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; T getForObject(String url, Class&lt;T&gt; responseType, Object... uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; T getForObject(String url, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)</span><br><span class="line">public &lt;T&gt; T getForObject(URI url, Class&lt;T&gt; responseType)</span><br></pre></td></tr></table></figure>
-<p>注：getForObject()比getForEntity()多了<code>HTTP</code>转换成<code>POJO</code>，但是省略了<code>response</code>信息。</p>
-<h5 id="getForObject-方法实例"><a href="#getForObject-方法实例" class="headerlink" title="getForObject()方法实例"></a>getForObject()方法实例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void restTemplateGetTest()&#123;</span><br><span class="line">  RestTemplate restTemplate = new RestTemplate();</span><br><span class="line">//无参</span><br><span class="line">  MessObj messObj1 = restTemplate.getForObject(&quot;http://xxx.com/test&quot;,MessObj .class);</span><br><span class="line">//占位符传参</span><br><span class="line">  MessObj messObj2 = restTemplate.getForObject(&quot;http://xxx.com/test/&#123;1&#125;/&#123;2&#125;&quot;,MessObj .class,&quot;参数1&quot;,&quot;参数2&quot;);</span><br><span class="line">//map传参</span><br><span class="line">  Map&lt;String,String&gt; map = new HashMap();</span><br><span class="line">  map.put(&quot;id&quot;,&quot;1&quot;);</span><br><span class="line">  map.put(&quot;name&quot;,&quot;zs&quot;)</span><br><span class="line">  MessObj messObj1 = restTemplate.getForObject(&quot;http://xxx.com/test&quot;,MessObj .class,map);</span><br><span class="line">//结果：messObj&#123;status=200,data=[&#123;a=1&#125;...]...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="getForEntity-方法"><a href="#getForEntity-方法" class="headerlink" title="getForEntity()方法"></a>getForEntity()方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(String url, Class&lt;T&gt; responseType, Object... uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(String url, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(URI url, Class&lt;T&gt; responseType)&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>注：返回的是<code>ResponseEntity</code>对象，需要<code>json</code>工具解析成<code>pojo</code>。<code>ResponseEntity</code>有<code>HttpStatus getStatusCode()</code>、<code>BodyBuilder</code>、<code>created(URI location)</code>等方法，方便查看更多信息。<br>ResponseEntity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public HttpStatus getStatusCode()&#123;&#125;</span><br><span class="line">public int getStatusCodeValue()&#123;&#125;</span><br><span class="line">public boolean equals(@Nullable Object other) &#123;&#125;</span><br><span class="line">public String toString() &#123;&#125;</span><br><span class="line">public static BodyBuilder status(HttpStatus status) &#123;&#125;</span><br><span class="line">public static BodyBuilder ok() &#123;&#125;</span><br><span class="line">public static &lt;T&gt; ResponseEntity&lt;T&gt; ok(T body) &#123;&#125;</span><br><span class="line">public static BodyBuilder created(URI location) &#123;&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>HttpStatus.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public enum HttpStatus &#123;</span><br><span class="line">public boolean is1xxInformational() &#123;&#125;</span><br><span class="line">public boolean is2xxSuccessful() &#123;&#125;</span><br><span class="line">public boolean is3xxRedirection() &#123;&#125;</span><br><span class="line">public boolean is4xxClientError() &#123;&#125;</span><br><span class="line">public boolean is5xxServerError() &#123;&#125;</span><br><span class="line">public boolean isError() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>BodyBuilder.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface BodyBuilder extends HeadersBuilder&lt;BodyBuilder&gt; &#123;</span><br><span class="line">    //设置正文的长度，以字节为单位，由Content-Length标头</span><br><span class="line">      BodyBuilder contentLength(long contentLength);</span><br><span class="line">    //设置body的MediaType 类型</span><br><span class="line">      BodyBuilder contentType(MediaType contentType);</span><br><span class="line">    //设置响应实体(ResponseEntity)的主体(内容)并返回它。</span><br><span class="line">      &lt;T&gt; ResponseEntity&lt;T&gt; body(@Nullable T body);</span><br><span class="line">｝</span><br></pre></td></tr></table></figure></p>
-<p>getForEntity()方法实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void gettTest()&#123;</span><br><span class="line">    RestTemplate resTemplate = new RestTemplate();</span><br><span class="line">    ResponseEntity&lt;MessObj&gt; entity = restTemplate.getForEntity(&quot;http://xx.com/test&quot;,MessObj.class);</span><br><span class="line">    HttpStatus hsc = entity.getStatusCode();</span><br><span class="line">    MessObj msObj = entity.getBody();</span><br><span class="line">    ResponseEntity.BodyBuilder status = ResponseEntity.status(hsc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="三、POST"><a href="#三、POST" class="headerlink" title="三、POST"></a>三、POST</h2><blockquote>
-<p><code>postForObject()</code>和<code>postForEntity()</code></p>
-</blockquote>
-<h5 id="postForObject方法"><a href="#postForObject方法" class="headerlink" title="postForObject方法"></a>postForObject方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; T postForObject(String url, @Nullable Object request, Class&lt;T&gt; responseType, Object... uriVariables)</span><br><span class="line">            throws RestClientException &#123;&#125;</span><br><span class="line">public &lt;T&gt; T postForObject(String url, @Nullable Object request, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)</span><br><span class="line">            throws RestClientException &#123;&#125;</span><br><span class="line">public &lt;T&gt; T postForObject(URI url, @Nullable Object request, Class&lt;T&gt; responseType) throws RestClientException &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    <span class="comment">//第一个参数url</span></span><br><span class="line">    String url = <span class="string">"http://xxx.com/test"</span>;</span><br><span class="line">    <span class="comment">//第二个参数request(val,header)</span></span><br><span class="line">    HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">    headers.setContentType(MediaType)；</span><br><span class="line">    <span class="comment">//一个key对应多个val的map</span></span><br><span class="line">    MultiValueMap&lt;String, String&gt; map= <span class="keyword">new</span> LinkedMultiValueMap&lt;&gt;();</span><br><span class="line">    map.add(<span class="string">"name"</span>, <span class="string">"zhangsan"</span>);    </span><br><span class="line">    <span class="comment">//request</span></span><br><span class="line">    HttpEntity&lt;MultiValueMap&lt;String,String&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(map,headers);</span><br><span class="line">    <span class="comment">//执行 url,http主</span></span><br><span class="line">    ResponseEntity&lt;String&gt; response = restTemplate.postForEntity(url,request,String.class);</span><br><span class="line">    <span class="comment">//返回值&#123;"status":500,"msg":"xxx","data":null&#125;</span></span><br><span class="line">    System.out.println(response.getBody());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>头类型<br>MediaType<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">json : application/json</span><br><span class="line">xml : application/xml</span><br><span class="line">png : image/png</span><br><span class="line">jpg : image/jpeg</span><br><span class="line">gif : imge/gif</span><br></pre></td></tr></table></figure></p>
-<h2 id="excute-和exchange"><a href="#excute-和exchange" class="headerlink" title="excute()和exchange()"></a>excute()和exchange()</h2><p><code>excute()</code>返回映射对象<code>&lt;T&gt;</code>,<code>exchange()</code>返回<code>ResponseEntity&lt;T&gt;</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">restTemplate.exchange(</span><br><span class="line">         String url, <span class="comment">//地址</span></span><br><span class="line">         HttpMethod method,<span class="comment">//请求类型(HttpMethod.POST/PUT/DELETE/GET)</span></span><br><span class="line">         HttpEntity requestEntity, <span class="comment">//请求主体：请求体、头、内容</span></span><br><span class="line">         Class responseType, <span class="comment">//返回实体类</span></span><br><span class="line">         Object uriVariables[]<span class="comment">//url参数</span></span><br><span class="line">     )</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/hexobuild/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="colin">
-      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="策马踏清风">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/24/hexobuild/" class="post-title-link" itemprop="url">本网站搭建教程</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-24 20:06:19" itemprop="dateCreated datePublished" datetime="2019-04-24T20:06:19+08:00">2019-04-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-25 00:37:39" itemprop="dateModified" datetime="2019-04-25T00:37:39+08:00">2019-04-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>hexo是一款基于github的博客系统，使用markdown编写文章内容。在此记录一次博客搭建主要工作。</p>
-</blockquote>
-<h1 id="1-安装环境"><a href="#1-安装环境" class="headerlink" title="1.安装环境"></a>1.安装环境</h1><h2 id="1-1-git"><a href="#1-1-git" class="headerlink" title="1.1 git"></a>1.1 git</h2><p><code>git --version</code>查看git版本</p>
-<h2 id="1-2-node"><a href="#1-2-node" class="headerlink" title="1.2 node"></a>1.2 node</h2><p><code>node -v</code>查看node版本</p>
-<h1 id="2-初步安装Hexo"><a href="#2-初步安装Hexo" class="headerlink" title="2.初步安装Hexo"></a>2.初步安装Hexo</h1><ul>
-<li><p>安装Hexo脚手架</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>初始化站点<br>新建一个文件加，并使用命令行进入。执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>一个本地博客系统就构建好了</p>
-<ul>
-<li><p>2.3站点目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml //博客配置，名称、关键词、作者、语言、主体等内容设置。</span><br><span class="line">├── package.json//应用信息，插件等内容。</span><br><span class="line">├── scaffolds//脚手架，有三个模板：文章(posts)、博客页(page)、草稿页(draft)。</span><br><span class="line">├── source//博客存放处，之后通过命令可以新建tags(标签)、categories(分页)</span><br><span class="line">|   ├── _drafts//草稿(初始)</span><br><span class="line">|   └── _posts//文章(初始)</span><br><span class="line">└── themes//主题存放处</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>常用命令<br><code>hexo n &lt;filename&gt;</code>新建文章<br><code>hexo clean</code>清除缓存<br><code>hexo g</code>生成静态页面<br><code>hexo s</code>启动本地服务器，本地查看效果<br><code>hexo d</code>部署到网站上</p>
-<h1 id="3-站点优化"><a href="#3-站点优化" class="headerlink" title="3.站点优化"></a>3.站点优化</h1><h2 id="3-1分类"><a href="#3-1分类" class="headerlink" title="3.1分类"></a>3.1分类</h2></li>
-<li><p>新建分类页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给页面添加类型<br>进入source-&gt;categories-&gt;index.md</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title:文章分类</span><br><span class="line">date: 2019-04-22 12:25:30</span><br><span class="line">type: &quot;categories&quot;   #添加</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>模板添加分类<br>打开scarffolds-&gt;post.md</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这样新建文章后就会有这个属性，填写分类就可以实现文章分类功能。</p>
-<h2 id="3-2-标签"><a href="#3-2-标签" class="headerlink" title="3.2 标签"></a>3.2 标签</h2><ul>
-<li><p>新建标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给页面添加标签属性<br>打开 source-&gt;tags-&gt;index.md</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2019-04-23 00:13:22</span><br><span class="line">type: &quot;tags&quot; #新添加的内容</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="3-3使用分类和标签"><a href="#3-3使用分类和标签" class="headerlink" title="3.3使用分类和标签"></a>3.3使用分类和标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">layout: posts</span><br><span class="line">title: 我的第一篇博客</span><br><span class="line">date: 2019-04-23 00:17:41</span><br><span class="line">categories: 学习笔记</span><br><span class="line">tags: [node.js, java]</span><br></pre></td></tr></table></figure>
-<h1 id="4-部署到GitHub"><a href="#4-部署到GitHub" class="headerlink" title="4.部署到GitHub"></a>4.部署到GitHub</h1><p>github中：</p>
-<ol>
-<li>创建<code>用户名.github.io</code>的仓库</li>
-<li>setting里添加GitHub Pages选项</li>
-<li>本地同步 打开 . -&gt;config.yml，添加部署路径<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: git@github.com:yourName/yourName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意：</p>
-<ol>
-<li>冒号后有一个空格</li>
-<li>需要先关联仓库，配置ssh</li>
-</ol>
-<p>使用命令<code>hexo g</code>  <code>hexo d</code> 完成生成并推送<br><code>yourName.github.io</code>就是博客网址</p>
-<p>注：报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error deployer not found:github</span><br></pre></td></tr></table></figure></p>
-<p>时，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
-<p>然后再试一次。</p>
-<hr>
-<h1 id="主题篇"><a href="#主题篇" class="headerlink" title="主题篇"></a>主题篇</h1><h1 id="1-安装NEXT"><a href="#1-安装NEXT" class="headerlink" title="1.安装NEXT"></a>1.安装NEXT</h1><blockquote>
-<p>next是hexo的一款主题，也可以点击<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官网</a>查看跟多</p>
-</blockquote>
-<p>安装主题只用将next的项目clone到根目录下themes/next里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
-<p>然后修改配置启用next主题<br>修改根目录下 <code>_config.yml</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure></p>
-<p>在next的<code>_config.yml</code>中可以修改next的样式，共有四个。可以在<a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">官网</a>看到案例</p>
-<ul>
-<li>Muse  (默认)</li>
-<li>Mist</li>
-<li>Pisces</li>
-<li>Gemini<br>注释其他的，留下想要的样式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="2-设置Menu-最上面的按钮"><a href="#2-设置Menu-最上面的按钮" class="headerlink" title="2.设置Menu(最上面的按钮)"></a>2.设置Menu(最上面的按钮)</h1><p><code>themes/next/_config.yml</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home #首页</span><br><span class="line">  about: /about/ || user #关于我</span><br><span class="line">  tags: /tags/ || tags  #标签</span><br><span class="line">  categories: /categories/ || th #分类</span><br><span class="line">  archives: /archives/ || archive #归档</span><br></pre></td></tr></table></figure></p>
-<h1 id="3-github挂饰"><a href="#3-github挂饰" class="headerlink" title="3.github挂饰"></a>3.github挂饰</h1><blockquote>
-<p>点击fork me on github的按钮，在<a href="https://links.jianshu.com/go?to=http%3A%2F%2Ftholman.com%2Fgithub-corners%2F" target="_blank" rel="noopener">GitHub Corners</a>选择挂饰，复制代码添加到<code>themes/next/layout/_layout.swig</code>的<code>&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</code>下方。将代码里的<code>https//your-url</code> 换成自己的git主页。</p>
-</blockquote>
-<h1 id="4-修改超链接css样式"><a href="#4-修改超链接css样式" class="headerlink" title="4.修改超链接css样式"></a>4.修改超链接css样式</h1><p><code>themes/next/source/css/_common/components/post/post.styl</code>末尾添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.post-body p a&#123;</span><br><span class="line">  color: #0593d3; //原始链接颜色</span><br><span class="line">  border-bottom: none;</span><br><span class="line">  border-bottom: 1px solid #0593d3; //底部分割线颜色</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    color: #fc6423; //鼠标经过颜色</span><br><span class="line">    border-bottom: none;</span><br><span class="line">    border-bottom: 1px solid #fc6423; //底部分割线颜色</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="5-设置头像以及动画"><a href="#5-设置头像以及动画" class="headerlink" title="5.设置头像以及动画"></a>5.设置头像以及动画</h1><p>根目录<code>_config.yml</code>中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//添加头像地址</span><br><span class="line">avatar: [ http://....]</span><br></pre></td></tr></table></figure></p>
-<p>头像圆角旋转<code>/themes/next/source/css/_common/components/sidebar/sidebar-author.styl</code>添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">.site-author-image &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  padding: $site-author-image-padding;</span><br><span class="line">  max-width: $site-author-image-width;</span><br><span class="line">  height: $site-author-image-height;</span><br><span class="line">  border: $site-author-image-border-width solid $site-author-image-border-color;</span><br><span class="line">  /* 头像圆形 */</span><br><span class="line">  border-radius: 80px;</span><br><span class="line">  -webkit-border-radius: 80px;</span><br><span class="line">  -moz-border-radius: 80px;</span><br><span class="line">  box-shadow: inset 0 -1px 0 #333sf;</span><br><span class="line">  /* 设置循环动画 [animation: (play)动画名称 (2s)动画播放时长单位秒或微秒 (ase-out)动画播放的速度曲线为以低速结束 </span><br><span class="line">    (1s)等待1秒然后开始动画 (1)动画播放次数(infinite为循环播放) ]*/</span><br><span class="line"> </span><br><span class="line">  /* 鼠标经过头像旋转360度 */</span><br><span class="line">  -webkit-transition: -webkit-transform 1.0s ease-out;</span><br><span class="line">  -moz-transition: -moz-transform 1.0s ease-out;</span><br><span class="line">  transition: transform 1.0s ease-out;</span><br><span class="line">&#125;</span><br><span class="line">img:hover &#123;</span><br><span class="line">  /* 鼠标经过停止头像旋转 </span><br><span class="line">  -webkit-animation-play-state:paused;</span><br><span class="line">  animation-play-state:paused;*/</span><br><span class="line">  /* 鼠标经过头像旋转360度 */</span><br><span class="line">  -webkit-transform: rotateZ(360deg);</span><br><span class="line">  -moz-transform: rotateZ(360deg);</span><br><span class="line">  transform: rotateZ(360deg);</span><br><span class="line">&#125;</span><br><span class="line">/* Z 轴旋转动画 */</span><br><span class="line">@-webkit-keyframes play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -webkit-transform: rotateZ(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    -webkit-transform: rotateZ(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@-moz-keyframes play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    -moz-transform: rotateZ(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    -moz-transform: rotateZ(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes play &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    transform: rotateZ(0deg);</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    transform: rotateZ(-360deg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="6-代码块样式"><a href="#6-代码块样式" class="headerlink" title="6.代码块样式"></a>6.代码块样式</h1><p><code>themes\next\source\css\_custom\custom.styl</code>添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">code &#123;</span><br><span class="line">    color: #ff7600;</span><br><span class="line">    background: #fbf7f8;</span><br><span class="line">    margin: 2px;</span><br><span class="line">&#125;</span><br><span class="line">// 大代码块的自定义样式</span><br><span class="line">.highlight, pre &#123;</span><br><span class="line">    margin: 5px 0;</span><br><span class="line">    padding: 5px;</span><br><span class="line">    border-radius: 3px;</span><br><span class="line">&#125;</span><br><span class="line">.highlight, code, pre &#123;</span><br><span class="line">    border: 1px solid #d6d6d6;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="7-社交网站图标"><a href="#7-社交网站图标" class="headerlink" title="7.社交网站图标"></a>7.社交网站图标</h1><p><code>next/_config.yml</code>的<code>Social</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[社交平台名]: [社交地址] || [图标名称]</span><br><span class="line">//github 、heartbeat(心)、spinner(圈)...（图标）</span><br></pre></td></tr></table></figure></p>
-<p>图标在<a href="https://links.jianshu.com/go?to=http%3A%2F%2Ffontawesome.io%2Ficons%2F" target="_blank" rel="noopener">Font Awesome Icon</a></p>
-<h1 id="8-RSS"><a href="#8-RSS" class="headerlink" title="8.RSS"></a>8.RSS</h1><ol>
-<li>根目录下<br><code>npm install --save hexo-generator-feed</code></li>
-<li>全局<code>_config.yml</code>末尾添加</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: http://hexo.io/plugins/</span><br><span class="line">plugins: hexo-generate-feed</span><br></pre></td></tr></table></figure>
-<p>打开Next的<code>_config.yml</code>中的<code>rss:</code><br>配置<code>rss: /atom.xml</code></p>
-<h1 id="9-搜索功能"><a href="#9-搜索功能" class="headerlink" title="9.搜索功能"></a>9.搜索功能</h1><ol>
-<li>根目录下<code>npm install hexo-generator-search --save</code></li>
-<li>根目录<code>_config.yml</code>中</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Search </span><br><span class="line">search:</span><br><span class="line">  path: ./public/search.xml</span><br><span class="line">  field: post #搜索那个文件夹(page、all)</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000 #限制条数</span><br></pre></td></tr></table></figure>
-<p>next<code>_config.yml</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true #改为true</span><br><span class="line">  trigger: auto</span><br><span class="line">  top_n_per_article: 1 #字段表示在每篇文章中显示的搜索结果数量，设成 -1 会显示每篇文章的所有搜索结果数量。</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/markdownlearn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="colin">
-      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="策马踏清风">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/24/markdownlearn/" class="post-title-link" itemprop="url">markdown基础语法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-24 20:04:03 / 修改时间：23:18:38" itemprop="dateCreated datePublished" datetime="2019-04-24T20:04:03+08:00">2019-04-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>回顾一下markdown命令<br>内容有：1.标题  2.字体  3.引用  4.分割线  5.图片  6.超链接  7.列表  8.表格  9.代码</p>
-</blockquote>
-<h1 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 一级标题</span><br><span class="line"></span><br><span class="line">## 二级标题</span><br></pre></td></tr></table></figure>
-<p>效果： </p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h1 id="2-字体"><a href="#2-字体" class="headerlink" title="2. 字体"></a>2. 字体</h1><p><code>**加粗**</code> <strong>加粗</strong></p>
-<p><code>*斜体*</code><em>斜体</em></p>
-<p><code>***斜体加粗***</code><strong><em>斜体加粗</em></strong></p>
-<p><code>~~删除线~~</code> <del>删除线</del></p>
-<h1 id="3-引用"><a href="#3-引用" class="headerlink" title="3.引用"></a>3.引用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;一级引用</span><br><span class="line"></span><br><span class="line">&gt;&gt;二级引用</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一级引用</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>二级引用</p>
-</blockquote>
-</blockquote>
-<h1 id="4-分割线"><a href="#4-分割线" class="headerlink" title="4.分割线"></a>4.分割线</h1><p><code>三个以上--- 或者***</code></p>
-<h1 id="5-图片"><a href="#5-图片" class="headerlink" title="5.图片"></a>5.图片</h1><p><code>![图片描述](图片地址&#39;&#39;图片title&#39;&#39;)</code></p>
-<h1 id="6-超链接"><a href="#6-超链接" class="headerlink" title="6.超链接"></a>6.超链接</h1><p><code>[超链接名](超链接地址&quot;超链接title&quot;)   title可不加</code></p>
-<h1 id="7-列表"><a href="#7-列表" class="headerlink" title="7.列表"></a>7.列表</h1><ol>
-<li>无序列表</li>
-</ol>
-<p><code>- 内容 + 内容 * 内容   三种都行 符号空格内容</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- xxx</span><br><span class="line">- xxx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>xxx</li>
-<li>xxx</li>
-</ul>
-<ol start="2">
-<li>有序列表</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. xxx</span><br><span class="line">2. xxx</span><br></pre></td></tr></table></figure>
-<h1 id="8-表格"><a href="#8-表格" class="headerlink" title="8.表格"></a>8.表格</h1><blockquote>
-<p><code>---</code> 默认左对齐， <code>:---:</code>居中对齐，<code>---:</code>右对齐</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line"></span><br><span class="line">---|:---:|---:</span><br><span class="line"></span><br><span class="line">内容|xxx|xxx</span><br></pre></td></tr></table></figure>
-<h1 id="9-代码"><a href="#9-代码" class="headerlink" title="9.代码"></a>9.代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">`单行代码`</span><br><span class="line">//以下是多行代码</span><br><span class="line">三个` (```)</span><br><span class="line"></span><br><span class="line">多行代码</span><br><span class="line"></span><br><span class="line">多行代码</span><br><span class="line"></span><br><span class="line">三个` (```)</span><br></pre></td></tr></table></figure>
-<p><code>单行代码</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">多行代码</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1891,7 +2588,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1985,7 +2682,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

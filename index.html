@@ -543,6 +543,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/thinkPHP5-session-cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colin">
+      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="策马踏清风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/09/thinkPHP5-session-cookie/" class="post-title-link" itemprop="url">thinkPHP5_session_cookie</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-09 21:26:59 / 修改时间：21:27:42" itemprop="dateCreated datePublished" datetime="2019-05-09T21:26:59+08:00">2019-05-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="session-cookie"><a href="#session-cookie" class="headerlink" title="session cookie"></a>session cookie</h1><p>赋值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 赋值（当前作用域）</span><br><span class="line">Session::set(&apos;name&apos;,&apos;thinkphp&apos;);</span><br><span class="line">// 赋值think作用域</span><br><span class="line">Session::set(&apos;name&apos;,&apos;thinkphp&apos;,&apos;think&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 判断（当前作用域）是否赋值</span><br><span class="line">Session::has(&apos;name&apos;);</span><br><span class="line">// 判断think作用域下面是否赋值</span><br><span class="line">Session::has(&apos;name&apos;,&apos;think&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>取值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 取值（当前作用域）</span><br><span class="line">Session::get(&apos;name&apos;);</span><br><span class="line">// 取值think作用域</span><br><span class="line">Session::get(&apos;name&apos;,&apos;think&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 删除（当前作用域）</span><br><span class="line">Session::delete(&apos;name&apos;);</span><br><span class="line">// 删除think作用域下面的值</span><br><span class="line">Session::delete(&apos;name&apos;,&apos;think&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>取值并删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 取值并删除</span><br><span class="line">Session::pull(&apos;name&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>清空<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 清除session（当前作用域）</span><br><span class="line">Session::clear();</span><br><span class="line">// 清除think作用域</span><br><span class="line">Session::clear(&apos;think&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 指定当前作用域</span><br><span class="line">Session::prefix(&apos;think&apos;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 设置Cookie 有效期为 3600秒</span><br><span class="line">Cookie::set(&apos;name&apos;,&apos;value&apos;,3600);</span><br><span class="line">// 设置cookie 前缀为think_</span><br><span class="line">Cookie::set(&apos;name&apos;,&apos;value&apos;,[&apos;prefix&apos;=&gt;&apos;think_&apos;,&apos;expire&apos;=&gt;3600]);</span><br><span class="line">// 支持数组</span><br><span class="line">Cookie::set(&apos;name&apos;,[1,2,3]);</span><br><span class="line">判断</span><br><span class="line">Cookie</span><br><span class="line"></span><br><span class="line">Cookie::has(&apos;name&apos;);</span><br><span class="line">// 判断指定前缀的cookie值是否存在</span><br><span class="line">Cookie::has(&apos;name&apos;,&apos;think_&apos;);</span><br><span class="line">获取</span><br><span class="line">Cookie::get(&apos;name&apos;);</span><br><span class="line">// 获取指定前缀的cookie值</span><br><span class="line">Cookie::get(&apos;name&apos;,&apos;think_&apos;);</span><br><span class="line">删除</span><br><span class="line">删除cookie</span><br><span class="line">Cookie::delete(&apos;name&apos;);</span><br><span class="line">// 删除指定前缀的cookie</span><br><span class="line">Cookie::delete(&apos;name&apos;,&apos;think_&apos;);</span><br><span class="line">清空</span><br><span class="line">// 清空指定前缀的cookie</span><br><span class="line">Cookie::clear(&apos;think_&apos;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/beanUtilCopyBeanBug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1944,172 +2111,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/img2base64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="colin">
-      <meta itemprop="description" content="我行过许多地方的桥，看过许多次数的云，喝过许多种类的酒，却只爱过一个正当最好年龄的人。">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/34583190?s=460&v=4#/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="策马踏清风">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/06/img2base64/" class="post-title-link" itemprop="url">input输入框图片转base64</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-06 21:13:34 / 修改时间：21:15:00" itemprop="dateCreated datePublished" datetime="2019-05-06T21:13:34+08:00">2019-05-06</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>封装了几个方法，主要是传入input对象，将对象选中的文件转程base64形式。可以用于图片上传，图片选中后马上显示等功能</p>
-</blockquote>
-<p><strong>1.读取input对象图片，并调用2执行压缩</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function inputImgToBase64(inputOb,outputFun) &#123;</span><br><span class="line">        var file=inputOb.files[0]</span><br><span class="line">        if(!/image\/\w+/.test(file.type))			//判断获取的是否为图片文件</span><br><span class="line">        &#123;</span><br><span class="line">            alert(&quot;请确保文件为图像文件&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        var reader=new FileReader();</span><br><span class="line">        reader.readAsDataURL(file);</span><br><span class="line">        reader.onload=function(e)</span><br><span class="line">        &#123;</span><br><span class="line">            var image = new Image();</span><br><span class="line">            image.src = e.target.result;</span><br><span class="line">            image.onload = function() &#123;</span><br><span class="line">                var expectWidth = 480;</span><br><span class="line">                var expectHeight = 640;</span><br><span class="line">                var base64 = compress(this,expectWidth,expectHeight,1);</span><br><span class="line">                outputFun(base64);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>2.图片转base64</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * 图片转base64</span><br><span class="line">     * @param img img对象</span><br><span class="line">     * @param width</span><br><span class="line">     * @param height</span><br><span class="line">     * @param ratio 比例</span><br><span class="line">     * @returns base64Img</span><br><span class="line">     */</span><br><span class="line">    function compress(img, width, height, ratio) &#123;</span><br><span class="line">        var canvas, ctx, img64;</span><br><span class="line">        canvas = document.createElement(&apos;canvas&apos;);</span><br><span class="line">        canvas.width = width;</span><br><span class="line">        canvas.height = height;</span><br><span class="line">        ctx = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">        ctx.drawImage(img, 0, 0, width, height);</span><br><span class="line">        img64 = canvas.toDataURL(&quot;image/jpeg&quot;, ratio);</span><br><span class="line">        return img64;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>使用方式</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">inputImgToBase64($(&apos;#inputPhoto&apos;)[0],function (base64) &#123;</span><br><span class="line">            $(&apos;#output&apos;)[0].src=base64</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2158,7 +2159,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2187,7 +2188,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2260,7 +2263,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

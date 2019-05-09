@@ -518,9 +518,9 @@
       <category term="java" scheme="http://yoursite.com/categories/java/"/>
     
     
-      <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="jvm" scheme="http://yoursite.com/tags/jvm/"/>
     
       <category term="jmm" scheme="http://yoursite.com/tags/jmm/"/>
     

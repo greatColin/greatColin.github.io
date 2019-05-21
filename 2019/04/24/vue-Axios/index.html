@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="策马踏清风">
 <meta property="og:description" content="vue中使用axios进行一步http访问  引入1npm install axios main.js中1234import axios from &amp;apos;axios&amp;apos;import VueAxios from &amp;apos;vue-axios&amp;apos;Vue.use(VueAxios,axios); 使用1234567getMess()&amp;#123;      this.axios.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-09T13:25:22.659Z">
+<meta property="og:updated_time" content="2019-05-18T09:48:35.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue-Axios">
 <meta name="twitter:description" content="vue中使用axios进行一步http访问  引入1npm install axios main.js中1234import axios from &amp;apos;axios&amp;apos;import VueAxios from &amp;apos;vue-axios&amp;apos;Vue.use(VueAxios,axios); 使用1234567getMess()&amp;#123;      this.axios.">
@@ -437,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-09 21:25:22" itemprop="dateModified" datetime="2019-05-09T21:25:22+08:00">2019-05-09</time>
+                <time title="修改时间：2019-05-18 17:48:35" itemprop="dateModified" datetime="2019-05-18T17:48:35+08:00">2019-05-18</time>
               
             
           </span>
@@ -496,7 +496,7 @@
 <p>main.js中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import VueAxios from &apos;vue-axios&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(VueAxios,axios);</span><br></pre></td></tr></table></figure></p>
 <p>使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getMess()&#123;</span><br><span class="line">      this.axios.get(&apos;api/getNewsList&apos;).then((response)=&gt;&#123;</span><br><span class="line">        this.newsList=response.data.data;</span><br><span class="line">      &#125;).catch((response)=&gt;&#123;</span><br><span class="line">        console.log(response);</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">this.axios.get(&apos;/user&apos;, &#123;//url</span><br><span class="line">params: &#123;//数据</span><br><span class="line">    id: 123</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(function (response) &#123;</span><br><span class="line">    console.log(response);//成功结果</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);//失败信息</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>#POST<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">this.axios.post(&apos;/user&apos;, &#123;</span><br><span class="line">    firstName: &apos;Fred&apos;,</span><br><span class="line">    lastName: &apos;Flintstone&apos;</span><br><span class="line">&#125;)</span><br><span class="line">.then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">this.axios.post(&apos;/user&apos;, &#123;</span><br><span class="line">    firstName: &apos;Fred&apos;,</span><br><span class="line">    lastName: &apos;Flintstone&apos;</span><br><span class="line">&#125;)</span><br><span class="line">.then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h1 id="并发请求"><a href="#并发请求" class="headerlink" title="并发请求"></a>并发请求</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function getUserAccount() &#123;</span><br><span class="line">    return axios.get(&apos;/user/12345&apos;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function getUserPermissions() &#123;</span><br><span class="line">    return axios.get(&apos;/user/12345/permissions&apos;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">this.axios.all([getUserAccount(), getUserPermissions()])</span><br><span class="line">.then(axios.spread(function (acct, perms) &#123;</span><br><span class="line">    //两个请求现已完成</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 <h1 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h1><blockquote>
 <p>原本vue里this指向vue,但是axios里不是，所以会导致this内容报空。可以在method调用axios的函数开头加上<code>let that=this</code>,然后使用that代替this。</p>
@@ -624,7 +624,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -655,7 +655,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -746,7 +748,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -817,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GET"><span class="nav-number">2.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发请求"><span class="nav-number">3.</span> <span class="nav-text">并发请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this指向"><span class="nav-number">4.</span> <span class="nav-text">this指向</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GET"><span class="nav-number">2.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POST"><span class="nav-number">3.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发请求"><span class="nav-number">4.</span> <span class="nav-text">并发请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this指向"><span class="nav-number">5.</span> <span class="nav-text">this指向</span></a></li></ol></div>
             
 
           </div>

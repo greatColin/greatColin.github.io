@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="一、配置相关@springBootApplication通常在主类上，包含:  @Configuration:表明是配置文件 @EnableAutoConfiguration:根据依赖自动配置springBoot @ComponentScan:告诉Spring从哪里找bean(注解的包及下级包)  @Profiles隔离应用程序配置，让配置在特定环境生效。标注于@Component 或者 @Con">
-<meta name="keywords" content="springBoot,java">
+<meta name="keywords" content="java,springBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springBoot常用注解(Annotation)">
 <meta property="og:url" content="http://yoursite.com/2019/04/24/springBoot-Annotation/index.html">
 <meta property="og:site_name" content="策马踏清风">
 <meta property="og:description" content="一、配置相关@springBootApplication通常在主类上，包含:  @Configuration:表明是配置文件 @EnableAutoConfiguration:根据依赖自动配置springBoot @ComponentScan:告诉Spring从哪里找bean(注解的包及下级包)  @Profiles隔离应用程序配置，让配置在特定环境生效。标注于@Component 或者 @Con">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-15T14:23:56.381Z">
+<meta property="og:updated_time" content="2019-05-18T07:28:27.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springBoot常用注解(Annotation)">
 <meta name="twitter:description" content="一、配置相关@springBootApplication通常在主类上，包含:  @Configuration:表明是配置文件 @EnableAutoConfiguration:根据依赖自动配置springBoot @ComponentScan:告诉Spring从哪里找bean(注解的包及下级包)  @Profiles隔离应用程序配置，让配置在特定环境生效。标注于@Component 或者 @Con">
@@ -437,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-15 22:23:56" itemprop="dateModified" datetime="2019-05-15T22:23:56+08:00">2019-05-15</time>
+                <time title="修改时间：2019-05-18 15:28:27" itemprop="dateModified" datetime="2019-05-18T15:28:27+08:00">2019-05-18</time>
               
             
           </span>
@@ -516,9 +516,22 @@
 <li>method:指定类型，GET、POST….</li>
 <li>consumes:指定处理提交类型(Content-Type),application/json,test/html等</li>
 </ul>
-<p>@RequestParam<br><strong>方法的参数前</strong>,获取指定名称的参数并传入形参<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public User getUser(@RequestParam(value = &quot;id&quot;, required = false) Integer id)</span><br></pre></td></tr></table></figure></p>
+<p>@RequestParam<br><strong>方法的参数前</strong>,获取指定名称的参数并传入形参(键值对类型的参数)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public User getUser(@RequestParam(value = &quot;id&quot;, required = false) Integer id)</span><br></pre></td></tr></table></figure></p>
 <p><code>required=false</code>表示该值可不存在，可为空。也可以作用于<code>@Autowired</code>表示该bean不是必须的，可不存在，可为空。</p>
 <p>@PathVariable<br>路径变量，获取RequestMapping中占位符的值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/&#123;uid&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getUserById</span><span class="params">(@PathVariable Integer id)</span></span>&#123;</span><br><span class="line"><span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>@RequestBody<br>可以接收json格式的数据(应该可省略，直接写实体类目前可以直接转换)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public DbBook findBookByName(@RequestBody DbBook book)</span><br></pre></td></tr></table></figure></p>
+<p>接收字符串（不能组成一个实体类，所以不能用实体类接收的情况）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void deleteBookById(@RequestBody Map&lt;String, String&gt; map)</span><br></pre></td></tr></table></figure>
+<p>@RequestBody接收不同的对象</p>
+<ol>
+<li>创建一个新的entity，将两个entity都进去。</li>
+<li>用Map&lt;String, Object&gt;接受request body，自己反序列化到各个entity中。</li>
+<li>实现自己的HandlerMethodArgumentResolver</li>
+</ol>
+<p>@ModelAttribute<br>和实体类绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public String modelAttributeTest(@ModelAttribute User user)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注:multipart/form-data（二进制文件）@RequestBody不能处理这种格式的数据。<br>application/json、application/xml等格式的数据，必须使用@RequestBody来处理。</p>
+</blockquote>
 <h1 id="五、全局异常处理"><a href="#五、全局异常处理" class="headerlink" title="五、全局异常处理"></a>五、全局异常处理</h1><p>@ControllerAdvice<br>control增强器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.WebDataBinder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * controller 增强器,作用于所有有效的control</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyControllerAdvice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 应用到所有<span class="doctag">@RequestMapping</span>注解方法，在其执行之前初始化数据绑定器</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> binder</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initBinder</span><span class="params">(WebDataBinder binder)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 把值绑定到Model中，使全局<span class="doctag">@RequestMapping</span>可以获取到该值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> model</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addAttributes</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"author"</span>, <span class="string">"Magical Sam"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 全局异常捕捉处理</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ex</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = Exception.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map <span class="title">errorHandler</span><span class="params">(Exception ex)</span> </span>&#123;</span><br><span class="line">        Map map = <span class="keyword">new</span> HashMap();</span><br><span class="line">        map.put(<span class="string">"code"</span>, <span class="number">100</span>);</span><br><span class="line">        map.put(<span class="string">"msg"</span>, ex.getMessage());</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>@ExceptionHandler（Exception.class）：<br>标注在方法上，遇到这个异常就执行以下方法</p>
 <h1 id="六、JPA"><a href="#六、JPA" class="headerlink" title="六、JPA"></a>六、JPA</h1><ul>
@@ -528,20 +541,18 @@
 <li>tinyint类型的默认值<code>@Column(name=&quot;state&quot;,columnDefinition=&quot;tinyint default 0&quot;)</code></li>
 <li>varchar(128),非空<code>@Column(name = &quot;Email&quot;,columnDefinition=&quot;varchar(128) not null&quot;)</code></li>
 </ol>
+<p>当String类型不够用时可以指定属性在数据库中的类型为<code>text</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Column(name = &quot;Remark&quot;,columnDefinition=&quot;text&quot;)</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>uuid,见jpa主键生成策略</p>
 </li>
 <li><p>query执行sql语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Query(&quot;from User u where u.name=:name&quot;)</span><br><span class="line">   User findUser(@Param(&quot;name&quot;) String name);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @Query(&quot;from User u where u.name=:name&quot;)</span><br><span class="line">    User findUser(@Param(&quot;name&quot;) String name);</span><br><span class="line"></span><br><span class="line">@Query(&quot;select * from User u where u.name like :first and u.age&gt;:age&quot;)</span><br><span class="line">List&lt;User&gt; findByNameLikeAndAgeGreaterThan(@Param(&quot;first&quot;)String firstName,@Param(&quot;age&quot;)Integer age);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="值注入"><a href="#值注入" class="headerlink" title="值注入"></a>值注入</h1><ul>
-<li><p><code>@Value(&quot;${key}&quot;)</code></p>
-<blockquote>
+<li><code>@Value(&quot;${key}&quot;)</code><blockquote>
 <p>通过key注入配置文件中的value</p>
 </blockquote>
-</li>
-<li><p>query执行sql语句</p>
 </li>
 </ul>
 
@@ -567,9 +578,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/springBoot/" rel="tag"># springBoot</a>
-          
             <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/springBoot/" rel="tag"># springBoot</a>
           
         </div>
       
@@ -665,7 +676,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -696,7 +707,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -787,7 +800,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

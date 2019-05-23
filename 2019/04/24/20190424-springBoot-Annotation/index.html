@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="策马踏清风">
 <meta property="og:description" content="一、配置相关@springBootApplication通常在主类上，包含:  @Configuration:表明是配置文件 @EnableAutoConfiguration:根据依赖自动配置springBoot @ComponentScan:告诉Spring从哪里找bean(注解的包及下级包)  @Profiles隔离应用程序配置，让配置在特定环境生效。标注于@Component 或者 @Con">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-18T07:28:27.871Z">
+<meta property="og:updated_time" content="2019-05-22T14:14:17.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springBoot常用注解(Annotation)">
 <meta name="twitter:description" content="一、配置相关@springBootApplication通常在主类上，包含:  @Configuration:表明是配置文件 @EnableAutoConfiguration:根据依赖自动配置springBoot @ComponentScan:告诉Spring从哪里找bean(注解的包及下级包)  @Profiles隔离应用程序配置，让配置在特定环境生效。标注于@Component 或者 @Con">
@@ -437,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-18 15:28:27" itemprop="dateModified" datetime="2019-05-18T15:28:27+08:00">2019-05-18</time>
+                <time title="修改时间：2019-05-22 22:14:17" itemprop="dateModified" datetime="2019-05-22T22:14:17+08:00">2019-05-22</time>
               
             
           </span>
@@ -516,19 +516,19 @@
 <li>method:指定类型，GET、POST….</li>
 <li>consumes:指定处理提交类型(Content-Type),application/json,test/html等</li>
 </ul>
-<p>@RequestParam<br><strong>方法的参数前</strong>,获取指定名称的参数并传入形参(键值对类型的参数)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public User getUser(@RequestParam(value = &quot;id&quot;, required = false) Integer id)</span><br></pre></td></tr></table></figure></p>
+<p>@RequestParam<br><strong>方法的参数前</strong>,获取指定名称的参数并传入形参(键值对类型的参数)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span> Integer id)</span></span><br></pre></td></tr></table></figure></p>
 <p><code>required=false</code>表示该值可不存在，可为空。也可以作用于<code>@Autowired</code>表示该bean不是必须的，可不存在，可为空。</p>
 <p>@PathVariable<br>路径变量，获取RequestMapping中占位符的值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/&#123;uid&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getUserById</span><span class="params">(@PathVariable Integer id)</span></span>&#123;</span><br><span class="line"><span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>@RequestBody<br>可以接收json格式的数据(应该可省略，直接写实体类目前可以直接转换)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public DbBook findBookByName(@RequestBody DbBook book)</span><br></pre></td></tr></table></figure></p>
+<p>@RequestBody<br>可以接收json格式的数据(应该可省略，直接写实体类目前可以直接转换)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> DbBook <span class="title">findBookByName</span><span class="params">(@RequestBody DbBook book)</span></span></span><br></pre></td></tr></table></figure></p>
 <p>接收字符串（不能组成一个实体类，所以不能用实体类接收的情况）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void deleteBookById(@RequestBody Map&lt;String, String&gt; map)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBookById</span><span class="params">(@RequestBody Map&lt;String, String&gt; map)</span></span></span><br></pre></td></tr></table></figure>
 <p>@RequestBody接收不同的对象</p>
 <ol>
 <li>创建一个新的entity，将两个entity都进去。</li>
 <li>用Map&lt;String, Object&gt;接受request body，自己反序列化到各个entity中。</li>
 <li>实现自己的HandlerMethodArgumentResolver</li>
 </ol>
-<p>@ModelAttribute<br>和实体类绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public String modelAttributeTest(@ModelAttribute User user)</span><br></pre></td></tr></table></figure></p>
+<p>@ModelAttribute<br>和实体类绑定<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">(@ModelAttribute User user)</span></span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>注:multipart/form-data（二进制文件）@RequestBody不能处理这种格式的数据。<br>application/json、application/xml等格式的数据，必须使用@RequestBody来处理。</p>
 </blockquote>
@@ -541,12 +541,12 @@
 <li>tinyint类型的默认值<code>@Column(name=&quot;state&quot;,columnDefinition=&quot;tinyint default 0&quot;)</code></li>
 <li>varchar(128),非空<code>@Column(name = &quot;Email&quot;,columnDefinition=&quot;varchar(128) not null&quot;)</code></li>
 </ol>
-<p>当String类型不够用时可以指定属性在数据库中的类型为<code>text</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Column(name = &quot;Remark&quot;,columnDefinition=&quot;text&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>当String类型不够用时可以指定属性在数据库中的类型为<code>text</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Column</span>(name = <span class="string">"Remark"</span>,columnDefinition=<span class="string">"text"</span>)</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>uuid,见jpa主键生成策略</p>
 </li>
 <li><p>query执行sql语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @Query(&quot;from User u where u.name=:name&quot;)</span><br><span class="line">    User findUser(@Param(&quot;name&quot;) String name);</span><br><span class="line"></span><br><span class="line">@Query(&quot;select * from User u where u.name like :first and u.age&gt;:age&quot;)</span><br><span class="line">List&lt;User&gt; findByNameLikeAndAgeGreaterThan(@Param(&quot;first&quot;)String firstName,@Param(&quot;age&quot;)Integer age);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Query</span>(<span class="string">"from User u where u.name=:name"</span>)</span><br><span class="line">    <span class="function">User <span class="title">findUser</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Query</span>(<span class="string">"select * from User u where u.name like :first and u.age&gt;:age"</span>)</span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findByNameLikeAndAgeGreaterThan</span><span class="params">(@Param(<span class="string">"first"</span>)</span>String firstName,@<span class="title">Param</span><span class="params">(<span class="string">"age"</span>)</span>Integer age)</span>;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="值注入"><a href="#值注入" class="headerlink" title="值注入"></a>值注入</h1><ul>

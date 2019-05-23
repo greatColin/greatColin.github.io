@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="策马踏清风">
 <meta property="og:description" content="使用copyProperties()复制时Boolean类型的一直无法复制，最后看到了一些信息   在网上找到分析源码513行只支持boolean123456789if (argCount == 0) &amp;#123;                        if (name.startsWith(GET_PREFIX)) &amp;#123;                            /">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-07T13:51:57.636Z">
+<meta property="og:updated_time" content="2019-05-22T14:05:09.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BeanUtils.copyProperties()复制Boolean类型失败">
 <meta name="twitter:description" content="使用copyProperties()复制时Boolean类型的一直无法复制，最后看到了一些信息   在网上找到分析源码513行只支持boolean123456789if (argCount == 0) &amp;#123;                        if (name.startsWith(GET_PREFIX)) &amp;#123;                            /">
@@ -420,12 +420,24 @@
                 
               
 
-              <time title="创建时间：2019-05-07 21:51:12 / 修改时间：21:51:57" itemprop="dateCreated datePublished" datetime="2019-05-07T21:51:12+08:00">2019-05-07</time>
+              <time title="创建时间：2019-05-07 21:51:12" itemprop="dateCreated datePublished" datetime="2019-05-07T21:51:12+08:00">2019-05-07</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-22 22:05:09" itemprop="dateModified" datetime="2019-05-22T22:05:09+08:00">2019-05-22</time>
               
             
           </span>
@@ -481,7 +493,7 @@
 <p>使用copyProperties()复制时Boolean类型的一直无法复制，最后看到了一些信息</p>
 </blockquote>
 <ol>
-<li>在网上找到分析源码513行只支持boolean<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if (argCount == 0) &#123;</span><br><span class="line">                        if (name.startsWith(GET_PREFIX)) &#123;</span><br><span class="line">                            // Simple getter</span><br><span class="line">                            pd = new PropertyDescriptor(this.beanClass, name.substring(3), method, null);</span><br><span class="line">                        &#125; else if (resultType == boolean.class &amp;&amp; name.startsWith(IS_PREFIX)) &#123;</span><br><span class="line">                            // Boolean getter</span><br><span class="line">                            pd = new PropertyDescriptor(this.beanClass, name.substring(2), method, null);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
+<li>在网上找到分析源码513行只支持boolean<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (argCount == <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (name.startsWith(GET_PREFIX)) &#123;</span><br><span class="line">                            <span class="comment">// Simple getter</span></span><br><span class="line">                            pd = <span class="keyword">new</span> PropertyDescriptor(<span class="keyword">this</span>.beanClass, name.substring(<span class="number">3</span>), method, <span class="keyword">null</span>);</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (resultType == <span class="keyword">boolean</span>.class &amp;&amp; name.startsWith(IS_PREFIX)) &#123;</span><br><span class="line">                            <span class="comment">// Boolean getter</span></span><br><span class="line">                            pd = <span class="keyword">new</span> PropertyDescriptor(<span class="keyword">this</span>.beanClass, name.substring(<span class="number">2</span>), method, <span class="keyword">null</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>Boolea类型的getXxx()可以使用，如果方法是isXxx()就只有boolean可以<br>我使用的是lombok生成的Boolean类型的get,set,自己写可能就没有这个问题了<br>最后改为boolean类型就可以了（向lombok低头）</p>

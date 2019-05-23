@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="策马踏清风">
 <meta property="og:description" content="application.properties是保存spring配置的地方。springBoot提供了很多模块，只需要在pom中引入模块化的starter POMs（spring-boot-starter-*,ru dara-jpa这些spring整合的模块）。除了这些模块的应用外，还能有其他特殊的使用场景。  自定义属性及加载12//key=value 类型xxx.demo.test=test">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-15T14:27:36.460Z">
+<meta property="og:updated_time" content="2019-05-22T14:01:49.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springBoot配置文件">
 <meta name="twitter:description" content="application.properties是保存spring配置的地方。springBoot提供了很多模块，只需要在pom中引入模块化的starter POMs（spring-boot-starter-*,ru dara-jpa这些spring整合的模块）。除了这些模块的应用外，还能有其他特殊的使用场景。  自定义属性及加载12//key=value 类型xxx.demo.test=test">
@@ -420,12 +420,24 @@
                 
               
 
-              <time title="创建时间：2019-05-15 22:26:44 / 修改时间：22:27:36" itemprop="dateCreated datePublished" datetime="2019-05-15T22:26:44+08:00">2019-05-15</time>
+              <time title="创建时间：2019-05-15 22:26:44" itemprop="dateCreated datePublished" datetime="2019-05-15T22:26:44+08:00">2019-05-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-22 22:01:49" itemprop="dateModified" datetime="2019-05-22T22:01:49+08:00">2019-05-22</time>
               
             
           </span>
@@ -480,15 +492,15 @@
         <blockquote>
 <p>application.properties是保存spring配置的地方。springBoot提供了很多模块，只需要在pom中引入模块化的<code>starter POMs</code>（spring-boot-starter-*,ru dara-jpa这些spring整合的模块）。除了这些模块的应用外，还能有其他特殊的使用场景。</p>
 </blockquote>
-<h1 id="自定义属性及加载"><a href="#自定义属性及加载" class="headerlink" title="自定义属性及加载"></a>自定义属性及加载</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//key=value 类型</span><br><span class="line">xxx.demo.test=test</span><br></pre></td></tr></table></figure>
-<p>在变量上加上注解，自动加载值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//属性名</span><br><span class="line">@Value(&quot;$&#123;xxx.demo.test&#125;&quot;)</span><br><span class="line">private String testValue</span><br></pre></td></tr></table></figure></p>
-<h1 id="参数间引用"><a href="#参数间引用" class="headerlink" title="参数间引用"></a>参数间引用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxx.demo.test=test</span><br><span class="line">xxx.demo.info=this is a $&#123;xxx.demo.test&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 随机字符串</span><br><span class="line">xxx.demo.test=$&#123;random.value&#125;</span><br><span class="line"># 随机int</span><br><span class="line">xxx.demo.test=$&#123;random.int&#125;</span><br><span class="line"># 随机long</span><br><span class="line">xxx.demo.test=$&#123;random.long&#125;</span><br><span class="line"># 10以内随机数</span><br><span class="line">xxx.demo.test=$&#123;random.int(10)&#125;</span><br><span class="line"># 10-20间随机数</span><br><span class="line">xxx.demo.test=$&#123;random.init(10,20)&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="自定义属性及加载"><a href="#自定义属性及加载" class="headerlink" title="自定义属性及加载"></a>自定义属性及加载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//key=value 类型</span></span><br><span class="line">xxx.demo.test=test</span><br></pre></td></tr></table></figure>
+<p>在变量上加上注解，自动加载值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//属性名</span></span><br><span class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;xxx.demo.test&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> String testValue</span><br></pre></td></tr></table></figure></p>
+<h1 id="参数间引用"><a href="#参数间引用" class="headerlink" title="参数间引用"></a>参数间引用</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxx.demo.test=test</span><br><span class="line">xxx.demo.info=<span class="keyword">this</span> is a $&#123;xxx.demo.test&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 随机字符串</span><br><span class="line">xxx.demo.test=$&#123;random.value&#125;</span><br><span class="line"># 随机int</span><br><span class="line">xxx.demo.test=$&#123;random.<span class="keyword">int</span>&#125;</span><br><span class="line"># 随机long</span><br><span class="line">xxx.demo.test=$&#123;random.<span class="keyword">long</span>&#125;</span><br><span class="line"># 10以内随机数</span><br><span class="line">xxx.demo.test=$&#123;random.<span class="keyword">int</span>(<span class="number">10</span>)&#125;</span><br><span class="line"># 10-20间随机数</span><br><span class="line">xxx.demo.test=$&#123;random.init(<span class="number">10</span>,<span class="number">20</span>)&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="屏蔽命令行修改属性值"><a href="#屏蔽命令行修改属性值" class="headerlink" title="屏蔽命令行修改属性值"></a>屏蔽命令行修改属性值</h1><blockquote>
 <p><code>java -jar xxx.jar --server.port=888</code>等价于在配置文件中设置xxx.jar，<code>--</code>是对于配置属性赋值的标识。</p>
 </blockquote>
 <ul>
-<li>屏蔽修改属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SpringApplication.setAddCommandLineProperties(false)</span><br></pre></td></tr></table></figure>
+<li>屏蔽修改属性<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SpringApplication.setAddCommandLineProperties(<span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h1><blockquote>
@@ -496,7 +508,7 @@
 <ul>
 <li>application-dev.properties：开发环境</li>
 <li>application-test.properties：测试环境</li>
-<li>application-prod.properties：生产环境<br>在主配置文件<code>application.properties</code>中<code>spring.profiles.active</code>配置机体需要那一份配置。（rest,dev,prod）<br>也可以命令行选则<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xxx.jar --spring.profiles.active=test</span><br></pre></td></tr></table></figure>
+<li>application-prod.properties：生产环境<br>在主配置文件<code>application.properties</code>中<code>spring.profiles.active</code>配置机体需要那一份配置。（rest,dev,prod）<br>也可以命令行选则<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xxx.jar --spring.profiles.active=test</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>

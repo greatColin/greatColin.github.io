@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="策马踏清风">
 <meta property="og:description" content="文章字数：1087,阅读全文大约需要4分钟  java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-28T12:06:57.024Z">
+<meta property="og:updated_time" content="2019-06-28T12:30:17.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM内存模型jmm">
 <meta name="twitter:description" content="文章字数：1087,阅读全文大约需要4分钟  java内存模型(java Memory Model)是一种符合内存模型规范，屏蔽硬件及操作系统的差异，保证java程序在不同平台下的内存访问效果一致性的机制及规范。  本文整理自-深入理解JVM-内存模型（jmm）和GC的上半部分  一、电脑内存模型 背景 随着cpu的发展，内存的读写速度远远赶不上cpu。因此，cpu的厂商在每颗cpu上加上了高速缓">
@@ -420,7 +420,7 @@
                 
               
 
-              <time title="创建时间：2019-06-28 08:06:57 / 修改时间：20:06:57" itemprop="dateCreated datePublished" datetime="2019-06-28T08:06:57+08:00">2019-06-28</time>
+              <time title="创建时间：2019-06-28 08:06:57 / 修改时间：20:30:17" itemprop="dateCreated datePublished" datetime="2019-06-28T08:06:57+08:00">2019-06-28</time>
             
 
             
@@ -565,7 +565,48 @@
 </li>
 </ol>
 <hr>
-<p><strong>再回顾一下</strong><br>线程私有的:<br>区域名|作用<br>—|—<br>计数器|cpu线程切换后找到正确位置<br>jvm栈|引用java方法<br>native栈|引用本地c/c++方法及功能<br>线程共享的:<br>区域名|作用<br>—|—<br>堆|对象实例、数组<br>方法区|类的静态信息</p>
+<p><strong>再回顾一下</strong><br>线程私有的:</p>
+<table>
+<thead>
+<tr>
+<th>区域名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计数器</td>
+<td>cpu线程切换后找到正确位置</td>
+</tr>
+<tr>
+<td>jvm栈</td>
+<td>引用java方法</td>
+</tr>
+<tr>
+<td>native栈</td>
+<td>引用本地c/c++方法及功能</td>
+</tr>
+</tbody>
+</table>
+<p>线程共享的:</p>
+<table>
+<thead>
+<tr>
+<th>区域名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>堆</td>
+<td>对象实例、数组</td>
+</tr>
+<tr>
+<td>方法区</td>
+<td>类的静态信息</td>
+</tr>
+</tbody>
+</table>
 <ol start="3">
 <li>对象在内存中的结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.对象头//</span><br><span class="line">2.数据实体//对象信息</span><br><span class="line">3.对齐填充//占位</span><br></pre></td></tr></table></figure>
 </li>
@@ -608,8 +649,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/28/Reactor模式/" rel="next" title="Reactor模式">
-                <i class="fa fa-chevron-left"></i> Reactor模式
+              <a href="/2019/06/28/JNI/" rel="next" title="JNI">
+                <i class="fa fa-chevron-left"></i> JNI
               </a>
             
           </div>
@@ -618,8 +659,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/28/No-executable-code-found-at-line-208/" rel="prev" title="No-executable-code-found-at-line-208">
-                No-executable-code-found-at-line-208 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/28/记录一些js实用到码片段2/" rel="prev" title="记录一些js实用到码片段2">
+                记录一些js实用到码片段2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="文章字数：384,阅读全文大约需要1分钟  RestTemplate是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过setRequestFactory属性切换到其它http源， Apache HttpComponents 、Netty 、OkHttp等。  #一、入口入口方法主要根据HTP的六个方法制定的：    HTT">
+  <meta name="description" content="文章字数：394,阅读全文大约需要1分钟  RestTemplate是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过setRequestFactory属性切换到其它http源， Apache HttpComponents 、Netty 、OkHttp等。  一、入口入口方法主要根据HTP的六个方法制定的：    HTTP">
 <meta name="keywords" content="后端博客,java,电脑,个人文章,摘抄">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot-RestTemplate">
 <meta property="og:url" content="http://yoursite.com/2019/09/29/SpringBoot-RestTemplate/index.html">
 <meta property="og:site_name" content="策马踏清风">
-<meta property="og:description" content="文章字数：384,阅读全文大约需要1分钟  RestTemplate是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过setRequestFactory属性切换到其它http源， Apache HttpComponents 、Netty 、OkHttp等。  #一、入口入口方法主要根据HTP的六个方法制定的：    HTT">
+<meta property="og:description" content="文章字数：394,阅读全文大约需要1分钟  RestTemplate是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过setRequestFactory属性切换到其它http源， Apache HttpComponents 、Netty 、OkHttp等。  一、入口入口方法主要根据HTP的六个方法制定的：    HTTP">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-29T15:20:44.667Z">
+<meta property="og:updated_time" content="2019-11-03T16:40:09.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot-RestTemplate">
-<meta name="twitter:description" content="文章字数：384,阅读全文大约需要1分钟  RestTemplate是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过setRequestFactory属性切换到其它http源， Apache HttpComponents 、Netty 、OkHttp等。  #一、入口入口方法主要根据HTP的六个方法制定的：    HTT">
+<meta name="twitter:description" content="文章字数：394,阅读全文大约需要1分钟  RestTemplate是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过setRequestFactory属性切换到其它http源， Apache HttpComponents 、Netty 、OkHttp等。  一、入口入口方法主要根据HTP的六个方法制定的：    HTTP">
 
 
 
@@ -420,12 +420,24 @@
                 
               
 
-              <time title="创建时间：2019-09-29 11:20:44 / 修改时间：23:20:44" itemprop="dateCreated datePublished" datetime="2019-09-29T11:20:44+08:00">2019-09-29</time>
+              <time title="创建时间：2019-09-29 23:20:44" itemprop="dateCreated datePublished" datetime="2019-09-29T23:20:44+08:00">2019-09-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-04 00:40:09" itemprop="dateModified" datetime="2019-11-04T00:40:09+08:00">2019-11-04</time>
               
             
           </span>
@@ -477,11 +489,11 @@
       
 
       
-        <p>文章字数：384,阅读全文大约需要1分钟</p>
+        <p>文章字数：394,阅读全文大约需要1分钟</p>
 <blockquote>
 <p><code>RestTemplate</code>是spring提供的访问Rest服务的客户端，默认使用jdk的http连接工具（HttpURLConnection）。可以通过<code>setRequestFactory</code>属性切换到其它http源， <code>Apache</code> <code>HttpComponents</code> 、<code>Netty</code> 、<code>OkHttp</code>等。</p>
 </blockquote>
-<p>#一、入口<br>入口方法主要根据HTP的六个方法制定的：</p>
+<h1 id="一、入口"><a href="#一、入口" class="headerlink" title="一、入口"></a>一、入口</h1><p>入口方法主要根据HTP的六个方法制定的：</p>
 <table>
 <thead>
 <tr>
@@ -533,27 +545,31 @@
 </tbody>
 </table>
 <p>注：默认使用<code>HttpMessageConverter</code>实例完成<code>POJP</code>和<code>HTTP</code>的转换，也可以通过<code>setMessageConverters</code>注册其它的转换器。（<code>@ResponseBody</code>使用的也是<code>HttpMessageConverter</code>）</p>
-<p>#二、GET</p>
-<blockquote>
-<p><code>getForObject()</code>和<code>getForEntity()</code></p>
+<h1 id="二、GET"><a href="#二、GET" class="headerlink" title="二、GET"></a>二、GET</h1><blockquote>
+<p><code>getForObject()</code>和<code>getForEntity()</code> 解析类写String.class获取的就是字符串形式的数据</p>
 </blockquote>
-<p>##getForObject()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; T getForObject(String url, Class&lt;T&gt; responseType, Object... uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; T getForObject(String url, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)</span><br><span class="line">public &lt;T&gt; T getForObject(URI url, Class&lt;T&gt; responseType)</span><br></pre></td></tr></table></figure></p>
+<h2 id="getForObject-方法"><a href="#getForObject-方法" class="headerlink" title="getForObject()方法"></a>getForObject()方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; T getForObject(String url, Class&lt;T&gt; responseType, Object... uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; T getForObject(String url, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)</span><br><span class="line">public &lt;T&gt; T getForObject(URI url, Class&lt;T&gt; responseType)</span><br></pre></td></tr></table></figure>
 <p>注：getForObject()比getForEntity()多了<code>HTTP</code>转换成<code>POJO</code>，但是省略了<code>response</code>信息。</p>
-<p>#####getForObject()方法实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void restTemplateGetTest()&#123;</span><br><span class="line">  RestTemplate restTemplate = new RestTemplate();</span><br><span class="line">//无参</span><br><span class="line">  MessObj messObj1 = restTemplate.getForObject(&quot;http://xxx.com/test&quot;,MessObj .class);</span><br><span class="line">//占位符传参</span><br><span class="line">  MessObj messObj2 = restTemplate.getForObject(&quot;http://xxx.com/test/&#123;1&#125;/&#123;2&#125;&quot;,MessObj .class,&quot;参数1&quot;,&quot;参数2&quot;);</span><br><span class="line">//map传参</span><br><span class="line">  Map&lt;String,String&gt; map = new HashMap();</span><br><span class="line">  map.put(&quot;id&quot;,&quot;1&quot;);</span><br><span class="line">  map.put(&quot;name&quot;,&quot;zs&quot;)</span><br><span class="line">  MessObj messObj1 = restTemplate.getForObject(&quot;http://xxx.com/test&quot;,MessObj .class,map);</span><br><span class="line">//结果：messObj&#123;status=200,data=[&#123;a=1&#125;...]...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##getForEntity()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(String url, Class&lt;T&gt; responseType, Object... uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(String url, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(URI url, Class&lt;T&gt; responseType)&#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注：返回的是<code>ResponseEntity</code>对象，需要<code>json</code>工具解析成<code>pojo</code>。<code>ResponseEntity</code>有<code>HttpStatus getStatusCode()</code>、<code>BodyBuilder</code>、<code>created(URI location)</code>等方法，方便查看更多信息。<br>ResponseEntity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public HttpStatus getStatusCode()&#123;&#125;</span><br><span class="line">public int getStatusCodeValue()&#123;&#125;</span><br><span class="line">public boolean equals(@Nullable Object other) &#123;&#125;</span><br><span class="line">public String toString() &#123;&#125;</span><br><span class="line">public static BodyBuilder status(HttpStatus status) &#123;&#125;</span><br><span class="line">public static BodyBuilder ok() &#123;&#125;</span><br><span class="line">public static &lt;T&gt; ResponseEntity&lt;T&gt; ok(T body) &#123;&#125;</span><br><span class="line">public static BodyBuilder created(URI location) &#123;&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2 id="getForObject-方法实例"><a href="#getForObject-方法实例" class="headerlink" title="getForObject()方法实例"></a>getForObject()方法实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public void restTemplateGetTest()&#123;</span><br><span class="line">  RestTemplate restTemplate = new RestTemplate();</span><br><span class="line">//无参</span><br><span class="line">  MessObj messObj1 = restTemplate.getForObject(&quot;http://xxx.com/test&quot;,MessObj .class);</span><br><span class="line">//占位符传参</span><br><span class="line">  MessObj messObj2 = restTemplate.getForObject(&quot;http://xxx.com/test/&#123;1&#125;/&#123;2&#125;&quot;,MessObj .class,&quot;参数1&quot;,&quot;参数2&quot;);</span><br><span class="line">//map传参</span><br><span class="line">  Map&lt;String,String&gt; map = new HashMap();</span><br><span class="line">  map.put(&quot;id&quot;,&quot;1&quot;);</span><br><span class="line">  map.put(&quot;name&quot;,&quot;zs&quot;)</span><br><span class="line">  MessObj messObj1 = restTemplate.getForObject(&quot;http://xxx.com/test&quot;,MessObj .class,map);</span><br><span class="line">//结果：messObj&#123;status=200,data=[&#123;a=1&#125;...]...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="getForEntity-方法"><a href="#getForEntity-方法" class="headerlink" title="getForEntity()方法"></a>getForEntity()方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(String url, Class&lt;T&gt; responseType, Object... uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(String url, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)&#123;&#125;</span><br><span class="line">public &lt;T&gt; ResponseEntity&lt;T&gt; getForEntity(URI url, Class&lt;T&gt; responseType)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>注：返回的是<code>ResponseEntity</code>对象，需要<code>json</code>工具解析成<code>pojo</code>。<code>ResponseEntity</code>有<code>HttpStatus getStatusCode()</code>、<code>BodyBuilder</code>、<code>created(URI location)</code>等方法，方便查看更多信息。</p>
+<p>ResponseEntity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public HttpStatus getStatusCode()&#123;&#125;</span><br><span class="line">public int getStatusCodeValue()&#123;&#125;</span><br><span class="line">public boolean equals(@Nullable Object other) &#123;&#125;</span><br><span class="line">public String toString() &#123;&#125;</span><br><span class="line">public static BodyBuilder status(HttpStatus status) &#123;&#125;</span><br><span class="line">public static BodyBuilder ok() &#123;&#125;</span><br><span class="line">public static &lt;T&gt; ResponseEntity&lt;T&gt; ok(T body) &#123;&#125;</span><br><span class="line">public static BodyBuilder created(URI location) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>HttpStatus.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public enum HttpStatus &#123;</span><br><span class="line">public boolean is1xxInformational() &#123;&#125;</span><br><span class="line">public boolean is2xxSuccessful() &#123;&#125;</span><br><span class="line">public boolean is3xxRedirection() &#123;&#125;</span><br><span class="line">public boolean is4xxClientError() &#123;&#125;</span><br><span class="line">public boolean is5xxServerError() &#123;&#125;</span><br><span class="line">public boolean isError() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>BodyBuilder.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface BodyBuilder extends HeadersBuilder&lt;BodyBuilder&gt; &#123;</span><br><span class="line">    //设置正文的长度，以字节为单位，由Content-Length标头</span><br><span class="line">      BodyBuilder contentLength(long contentLength);</span><br><span class="line">    //设置body的MediaType 类型</span><br><span class="line">      BodyBuilder contentType(MediaType contentType);</span><br><span class="line">    //设置响应实体(ResponseEntity)的主体(内容)并返回它。</span><br><span class="line">      &lt;T&gt; ResponseEntity&lt;T&gt; body(@Nullable T body);</span><br><span class="line">｝</span><br></pre></td></tr></table></figure></p>
-<p>getForEntity()方法实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void gettTest()&#123;</span><br><span class="line">    RestTemplate resTemplate = new RestTemplate();</span><br><span class="line">    ResponseEntity&lt;MessObj&gt; entity = restTemplate.getForEntity(&quot;http://xx.com/test&quot;,MessObj.class);</span><br><span class="line">    HttpStatus hsc = entity.getStatusCode();</span><br><span class="line">    MessObj msObj = entity.getBody();</span><br><span class="line">    ResponseEntity.BodyBuilder status = ResponseEntity.status(hsc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##三、POST</p>
-<blockquote>
+<p>BodyBuilder.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface BodyBuilder extends HeadersBuilder&lt;BodyBuilder&gt; &#123;</span><br><span class="line">    //设置正文的长度，以字节为单位，由Content-Length标头</span><br><span class="line">      BodyBuilder contentLength(long contentLength);</span><br><span class="line">    //设置body的MediaType 类型</span><br><span class="line">      BodyBuilder contentType(MediaType contentType);</span><br><span class="line">    //设置响应实体(ResponseEntity)的主体(内容)并返回它。</span><br><span class="line">      &lt;T&gt; ResponseEntity&lt;T&gt; body(@Nullable T body);</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+<p>getForEntity()方法实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void gettTest()&#123;</span><br><span class="line">    RestTemplate resTemplate = new RestTemplate();</span><br><span class="line">    ResponseEntity&lt;MessObj&gt; entity = restTemplate.getForEntity(&quot;http://xx.com/test&quot;,MessObj.class);</span><br><span class="line">    HttpStatus hsc = entity.getStatusCode();</span><br><span class="line">    MessObj msObj = entity.getBody();</span><br><span class="line">    ResponseEntity.BodyBuilder status = ResponseEntity.status(hsc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、POST"><a href="#三、POST" class="headerlink" title="三、POST"></a>三、POST</h1><blockquote>
 <p><code>postForObject()</code>和<code>postForEntity()</code></p>
 </blockquote>
-<p>#####postForObject方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; T postForObject(String url, @Nullable Object request, Class&lt;T&gt; responseType, Object... uriVariables)</span><br><span class="line">            throws RestClientException &#123;&#125;</span><br><span class="line">public &lt;T&gt; T postForObject(String url, @Nullable Object request, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)</span><br><span class="line">            throws RestClientException &#123;&#125;</span><br><span class="line">public &lt;T&gt; T postForObject(URI url, @Nullable Object request, Class&lt;T&gt; responseType) throws RestClientException &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    <span class="comment">//第一个参数url</span></span><br><span class="line">    String url = <span class="string">"http://xxx.com/test"</span>;</span><br><span class="line">    <span class="comment">//第二个参数request(val,header)</span></span><br><span class="line">    HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">    headers.setContentType(MediaType)；</span><br><span class="line">    <span class="comment">//一个key对应多个val的map</span></span><br><span class="line">    MultiValueMap&lt;String, String&gt; map= <span class="keyword">new</span> LinkedMultiValueMap&lt;&gt;();</span><br><span class="line">    map.add(<span class="string">"name"</span>, <span class="string">"zhangsan"</span>);    </span><br><span class="line">    <span class="comment">//request</span></span><br><span class="line">    HttpEntity&lt;MultiValueMap&lt;String,String&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(map,headers);</span><br><span class="line">    <span class="comment">//执行 url,http主</span></span><br><span class="line">    ResponseEntity&lt;String&gt; response = restTemplate.postForEntity(url,request,String.class);</span><br><span class="line">    <span class="comment">//返回值&#123;"status":500,"msg":"xxx","data":null&#125;</span></span><br><span class="line">    System.out.println(response.getBody());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>头类型<br>MediaType<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">json : application/json</span><br><span class="line">xml : application/xml</span><br><span class="line">png : image/png</span><br><span class="line">jpg : image/jpeg</span><br><span class="line">gif : imge/gif</span><br></pre></td></tr></table></figure></p>
-<p>##excute()和exchange()<br><code>excute()</code>返回映射对象<code>&lt;T&gt;</code>,<code>exchange()</code>返回<code>ResponseEntity&lt;T&gt;</code></p>
+<h2 id="postForObject方法"><a href="#postForObject方法" class="headerlink" title="postForObject方法"></a>postForObject方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T&gt; T postForObject(String url, @Nullable Object request, Class&lt;T&gt; responseType, Object... uriVariables)</span><br><span class="line">            throws RestClientException &#123;&#125;</span><br><span class="line">public &lt;T&gt; T postForObject(String url, @Nullable Object request, Class&lt;T&gt; responseType, Map&lt;String, ?&gt; uriVariables)</span><br><span class="line">            throws RestClientException &#123;&#125;</span><br><span class="line">public &lt;T&gt; T postForObject(URI url, @Nullable Object request, Class&lt;T&gt; responseType) throws RestClientException &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>实例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    <span class="comment">//第一个参数url</span></span><br><span class="line">    String url = <span class="string">"http://xxx.com/test"</span>;</span><br><span class="line">    <span class="comment">//第二个参数request(val,header)</span></span><br><span class="line">    HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">    headers.setContentType(MediaType);</span><br><span class="line">    <span class="comment">//一个key对应多个val的map</span></span><br><span class="line">    MultiValueMap&lt;String, String&gt; map= <span class="keyword">new</span> LinkedMultiValueMap&lt;&gt;();</span><br><span class="line">    map.add(<span class="string">"name"</span>, <span class="string">"zhangsan"</span>);    </span><br><span class="line">    <span class="comment">//request</span></span><br><span class="line">    HttpEntity&lt;MultiValueMap&lt;String,String&gt;&gt; request = <span class="keyword">new</span> HttpEntity&lt;&gt;(map,headers);</span><br><span class="line">    <span class="comment">//执行 url,http主</span></span><br><span class="line">    ResponseEntity&lt;String&gt; response = restTemplate.postForEntity(url,request,String.class);</span><br><span class="line">    <span class="comment">//返回值&#123;"status":500,"msg":"xxx","data":null&#125;</span></span><br><span class="line">    System.out.println(response.getBody());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>头类型<br>MediaType</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">json : application/json</span><br><span class="line">xml : application/xml</span><br><span class="line">png : image/png</span><br><span class="line">jpg : image/jpeg</span><br><span class="line">gif : imge/gif</span><br></pre></td></tr></table></figure>
+<h2 id="excute-和exchange"><a href="#excute-和exchange" class="headerlink" title="excute()和exchange()"></a>excute()和exchange()</h2><p><code>excute()</code>返回映射对象<code>&lt;T&gt;</code>,<code>exchange()</code>返回<code>ResponseEntity&lt;T&gt;</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">restTemplate.exchange(</span><br><span class="line">         String url, <span class="comment">//地址</span></span><br><span class="line">         HttpMethod method,<span class="comment">//请求类型(HttpMethod.POST/PUT/DELETE/GET)</span></span><br><span class="line">         HttpEntity requestEntity, <span class="comment">//请求主体：请求体、头、内容</span></span><br><span class="line">         Class responseType, <span class="comment">//返回实体类</span></span><br><span class="line">         Object uriVariables[]<span class="comment">//url参数</span></span><br><span class="line">     )</span><br></pre></td></tr></table></figure>
+<h1 id="设置超时"><a href="#设置超时" class="headerlink" title="设置超时"></a>设置超时</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SimpleClientHttpRequestFactory clientHttpRequestFactory = <span class="keyword">new</span> SimpleClientHttpRequestFactory();</span><br><span class="line">        clientHttpRequestFactory.setConnectTimeout(<span class="number">5</span> * <span class="number">1000</span>);</span><br><span class="line">        clientHttpRequestFactory.setReadTimeout(<span class="number">5</span> * <span class="number">1000</span>);</span><br><span class="line">        RestTemplate rest = <span class="keyword">new</span> RestTemplate(clientHttpRequestFactory);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -584,8 +600,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/29/springMVC文件下载/" rel="next" title="springMVC文件下载">
-                <i class="fa fa-chevron-left"></i> springMVC文件下载
+              <a href="/2019/09/29/springBoot-Aop/" rel="next" title="springBoot-Aop">
+                <i class="fa fa-chevron-left"></i> springBoot-Aop
               </a>
             
           </div>
@@ -594,8 +610,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/29/springBoot整合freemarker/" rel="prev" title="springBoot整合freemarker">
-                springBoot整合freemarker <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/29/java-IO/" rel="prev" title="java-IO">
+                java-IO <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,8 +656,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -658,7 +683,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">162</span>
+                    <span class="site-state-item-count">201</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -763,6 +788,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、入口"><span class="nav-number">1.</span> <span class="nav-text">一、入口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、GET"><span class="nav-number">2.</span> <span class="nav-text">二、GET</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#getForObject-方法"><span class="nav-number">2.1.</span> <span class="nav-text">getForObject()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getForObject-方法实例"><span class="nav-number">2.2.</span> <span class="nav-text">getForObject()方法实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getForEntity-方法"><span class="nav-number">2.3.</span> <span class="nav-text">getForEntity()方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、POST"><span class="nav-number">3.</span> <span class="nav-text">三、POST</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#postForObject方法"><span class="nav-number">3.1.</span> <span class="nav-text">postForObject方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#excute-和exchange"><span class="nav-number">3.2.</span> <span class="nav-text">excute()和exchange()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置超时"><span class="nav-number">4.</span> <span class="nav-text">设置超时</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
